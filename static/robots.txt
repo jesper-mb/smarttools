@@ -1,0 +1,13 @@
+# IttyTools - Free Online Tools
+# https://ittytools.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_app/
+
+# Sitemap
+Sitemap: https://ittytools.com/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1

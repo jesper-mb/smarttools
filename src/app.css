@@ -1,0 +1,366 @@
+@import 'tailwindcss';
+
+:root {
+	--color-accent: #ea580c;
+	--color-accent-hover: #c2410c;
+	--color-bg: #ffffff;
+	--color-bg-subtle: #fafafa;
+	--color-text: #0a0a0a;
+	--color-text-muted: #737373;
+	--color-border: #e5e5e5;
+	--color-border-strong: #0a0a0a;
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+html {
+	font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', ui-monospace, monospace;
+	scroll-behavior: smooth;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.font-sans {
+	font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.tabular-nums {
+	font-variant-numeric: tabular-nums;
+}
+
+::selection {
+	background-color: #0a0a0a;
+	color: #ffffff;
+}
+
+/* Focus states */
+input:focus, textarea:focus {
+	outline: none;
+	border-color: #0a0a0a !important;
+}
+
+button:focus-visible {
+	outline: 2px solid #0a0a0a;
+	outline-offset: 2px;
+}
+
+a:focus-visible {
+	outline: 2px solid #0a0a0a;
+	outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+	transition: all 150ms var(--ease-out-expo);
+}
+
+/* Card hover lift effect */
+.hover-lift {
+	transition: transform 200ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo);
+}
+
+.hover-lift:hover {
+	transform: translateY(-2px);
+}
+
+/* Animated underline for links */
+.animated-underline {
+	position: relative;
+}
+
+.animated-underline::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 0;
+	height: 2px;
+	background-color: currentColor;
+	transition: width 200ms var(--ease-out-expo);
+}
+
+.animated-underline:hover::after {
+	width: 100%;
+}
+
+/* Fade in animation for page content */
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in-up {
+	animation: fade-in-up 400ms var(--ease-out-expo) forwards;
+}
+
+/* Staggered animation delays */
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 150ms; }
+.stagger-4 { animation-delay: 200ms; }
+
+@keyframes blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0; }
+}
+
+.animate-blink {
+	animation: blink 1s step-end infinite;
+}
+
+@keyframes spin-wheel {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+/* Pulse animation for active states */
+@keyframes pulse-subtle {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.7; }
+}
+
+.animate-pulse-subtle {
+	animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Scale animation on click */
+.active-scale:active {
+	transform: scale(0.98);
+}
+
+/* Backdrop blur for overlays */
+.backdrop-blur-subtle {
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+}
+
+/* Smooth shadow transitions */
+.shadow-hover {
+	transition: box-shadow 200ms var(--ease-out-expo);
+}
+
+.shadow-hover:hover {
+	box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 1);
+}
+
+/* Number counter animation */
+@keyframes count-up {
+	from { transform: translateY(100%); opacity: 0; }
+	to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-count-up {
+	animation: count-up 300ms var(--ease-out-expo);
+}
+
+/* Loading skeleton */
+@keyframes shimmer {
+	0% { background-position: -200% 0; }
+	100% { background-position: 200% 0; }
+}
+
+.skeleton {
+	background: linear-gradient(90deg, #f5f5f5 25%, #e5e5e5 50%, #f5f5f5 75%);
+	background-size: 200% 100%;
+	animation: shimmer 1.5s infinite;
+}
+
+/* ===========================================
+   DESIGN SYSTEM - Component Classes
+   =========================================== */
+
+/* Tool Card - used for listing tools */
+.tool-card {
+	display: block;
+	border: 2px solid #e5e5e5;
+	padding: 1.5rem;
+	background: white;
+	transition: all 150ms var(--ease-out-expo);
+}
+
+.tool-card:hover {
+	border-color: #0a0a0a;
+	box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
+}
+
+.tool-card-title {
+	font-weight: 700;
+	color: #0a0a0a;
+	margin-bottom: 0.5rem;
+	letter-spacing: -0.01em;
+	transition: color 150ms var(--ease-out-expo);
+}
+
+.tool-card:hover .tool-card-title {
+	color: #ea580c;
+}
+
+.tool-card-description {
+	font-size: 0.875rem;
+	color: #737373;
+	font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.tool-card-arrow {
+	display: inline-block;
+	margin-top: 1rem;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #ea580c;
+	opacity: 0;
+	transform: translateX(0);
+	transition: all 150ms var(--ease-out-expo);
+}
+
+.tool-card:hover .tool-card-arrow {
+	opacity: 1;
+	transform: translateX(4px);
+}
+
+/* Section Header - consistent section titles */
+.section-header {
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #a3a3a3;
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid #e5e5e5;
+}
+
+/* Content Container - main tool area */
+.content-card {
+	background: white;
+	border: 2px solid #e5e5e5;
+	padding: 2rem;
+}
+
+@media (min-width: 640px) {
+	.content-card {
+		padding: 3rem;
+	}
+}
+
+/* Keyboard Hint */
+.kbd {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.25rem 0.5rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	background: #f5f5f5;
+	border: 2px solid #e5e5e5;
+	min-width: 1.5rem;
+}
+
+/* Form Input */
+.form-input {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border: 2px solid #e5e5e5;
+	background: white;
+	font-family: 'Inter', system-ui, -apple-system, sans-serif;
+	transition: border-color 150ms var(--ease-out-expo);
+}
+
+.form-input:focus {
+	outline: none;
+	border-color: #0a0a0a;
+}
+
+.form-input::placeholder {
+	color: #a3a3a3;
+}
+
+/* Display - large numbers for tools */
+.display-xl {
+	font-size: 4rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.02em;
+	line-height: 1;
+}
+
+@media (min-width: 640px) {
+	.display-xl {
+		font-size: 6rem;
+	}
+}
+
+.display-lg {
+	font-size: 2.5rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.02em;
+	line-height: 1;
+}
+
+@media (min-width: 640px) {
+	.display-lg {
+		font-size: 4rem;
+	}
+}
+
+/* FAQ Item */
+.faq-question {
+	font-weight: 700;
+	color: #0a0a0a;
+	margin-bottom: 0.25rem;
+}
+
+.faq-answer {
+	color: #525252;
+	font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Link with animated underline */
+.link-underline {
+	position: relative;
+	color: #0a0a0a;
+	text-decoration: none;
+}
+
+.link-underline::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 0;
+	height: 2px;
+	background-color: #ea580c;
+	transition: width 200ms var(--ease-out-expo);
+}
+
+.link-underline:hover::after {
+	width: 100%;
+}
+
+/* Page container */
+.page-container {
+	max-width: 64rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+	.page-container {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+}
