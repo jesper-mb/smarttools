@@ -13,7 +13,7 @@
 	let { items }: Props = $props();
 	let lang = $derived($currentLang);
 	let baseUrl = 'https://ittytools.com';
-	let homeUrl = $derived(lang === 'en' ? `${baseUrl}/en` : baseUrl);
+	let homeUrl = $derived(lang === 'en' ? baseUrl : `${baseUrl}/${lang}`);
 
 	// Generate BreadcrumbList schema
 	let schema = $derived({
@@ -42,7 +42,7 @@
 
 <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-sm">
 	<a
-		href={lang === 'en' ? '/en' : '/'}
+		href={lang === 'en' ? '/' : `/${lang}`}
 		class="text-neutral-400 hover:text-neutral-950 transition-colors"
 	>
 		~
