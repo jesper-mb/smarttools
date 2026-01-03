@@ -42,10 +42,34 @@
 	// Category data with icons and tools
 	const categoryData: Array<{ key: CategoryKey; icon: string; name: string; description: string }> = [
 		{
-			key: 'tech',
+			key: 'time',
+			icon: '⏱',
+			name: 'Tiempo',
+			description: 'Cronómetro, temporizadores, cuenta regresiva'
+		},
+		{
+			key: 'text',
+			icon: 'Aa',
+			name: 'Texto',
+			description: 'Contar palabras, ordenar, limpiar'
+		},
+		{
+			key: 'calc',
+			icon: '%',
+			name: 'Calculadoras',
+			description: 'Porcentaje, edad, unidades'
+		},
+		{
+			key: 'generators',
+			icon: '✦',
+			name: 'Generadores',
+			description: 'Aleatorio, contraseñas, códigos QR'
+		},
+		{
+			key: 'dev',
 			icon: '{ }',
-			name: 'Tech',
-			description: 'Codificación, hashing, JSON, contraseñas'
+			name: 'Desarrollador',
+			description: 'Base64, JSON, hashing, codificación'
 		},
 		{
 			key: 'social',
@@ -57,13 +81,7 @@
 			key: 'travel',
 			icon: '→',
 			name: 'Viaje',
-			description: 'Equipaje, peso, planificación de jetlag'
-		},
-		{
-			key: 'everyday',
-			icon: '○',
-			name: 'Cotidiano',
-			description: 'Temporizadores, contadores, calculadoras'
+			description: 'Equipaje, planificación de jetlag'
 		}
 	];
 
@@ -240,7 +258,7 @@
 		<div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
 			<div class="flex items-baseline justify-between mb-8">
 				<h2 class="text-xs font-bold uppercase tracking-widest text-neutral-400">Herramientas populares</h2>
-				<a href={categoryUrl('everyday')} class="text-xs text-neutral-400 hover:text-orange-600 transition-colors font-mono">
+				<a href={categoryUrl('generators')} class="text-xs text-neutral-400 hover:text-orange-600 transition-colors font-mono">
 					Ver todas →
 				</a>
 			</div>

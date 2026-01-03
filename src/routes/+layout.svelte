@@ -35,13 +35,16 @@
 		).slice(0, 8);
 	});
 
-	// Categories for nav - using keys, labels derived based on language
-	const categoryKeys: CategoryKey[] = ['tech', 'social', 'travel', 'everyday'];
+	// Categories for nav - using keys from registry
+	const categoryKeys: CategoryKey[] = ['text', 'calc', 'generators', 'dev', 'social', 'travel'];
 	const categoryLabels: Record<CategoryKey, Record<SupportedLang, string>> = {
-		tech: { en: 'Tech', nl: 'Tech', de: 'Tech', es: 'Tech' },
+		time: { en: 'Time', nl: 'Tijd', de: 'Zeit', es: 'Tiempo' },
+		text: { en: 'Text', nl: 'Tekst', de: 'Text', es: 'Texto' },
+		calc: { en: 'Calculators', nl: 'Rekenmachines', de: 'Rechner', es: 'Calculadoras' },
+		generators: { en: 'Generators', nl: 'Generatoren', de: 'Generatoren', es: 'Generadores' },
+		dev: { en: 'Developer', nl: 'Developer', de: 'Entwickler', es: 'Desarrollador' },
 		social: { en: 'Social', nl: 'Social', de: 'Social', es: 'Social' },
-		travel: { en: 'Travel', nl: 'Reizen', de: 'Reise', es: 'Viaje' },
-		everyday: { en: 'Everyday', nl: 'Dagelijks', de: 'Alltag', es: 'Cotidiano' }
+		travel: { en: 'Travel', nl: 'Reizen', de: 'Reise', es: 'Viaje' }
 	};
 
 	// Get tools per category for footer

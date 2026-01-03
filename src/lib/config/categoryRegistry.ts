@@ -8,7 +8,7 @@
 
 import type { SupportedLang } from './types';
 
-export type CategoryKey = 'everyday' | 'tech' | 'social' | 'travel';
+export type CategoryKey = 'time' | 'text' | 'calc' | 'generators' | 'dev' | 'social' | 'travel';
 
 export interface CategoryConfig {
 	slugs: Record<SupportedLang, string>;
@@ -16,21 +16,48 @@ export interface CategoryConfig {
 }
 
 export const categoryRegistry: Record<CategoryKey, CategoryConfig> = {
-	everyday: {
+	time: {
 		slugs: {
-			en: 'everyday',
-			nl: 'dagelijks',
-			de: 'alltag',
-			es: 'cotidiano'
+			en: 'time',
+			nl: 'tijd',
+			de: 'zeit',
+			es: 'tiempo'
 		},
 		icon: 'clock'
 	},
-	tech: {
+	text: {
 		slugs: {
-			en: 'tech',
-			nl: 'tech',
-			de: 'tech',
-			es: 'tech'
+			en: 'text',
+			nl: 'tekst',
+			de: 'text',
+			es: 'texto'
+		},
+		icon: 'type'
+	},
+	calc: {
+		slugs: {
+			en: 'calculators',
+			nl: 'rekenmachines',
+			de: 'rechner',
+			es: 'calculadoras'
+		},
+		icon: 'calculator'
+	},
+	generators: {
+		slugs: {
+			en: 'generators',
+			nl: 'generatoren',
+			de: 'generatoren',
+			es: 'generadores'
+		},
+		icon: 'sparkles'
+	},
+	dev: {
+		slugs: {
+			en: 'developer',
+			nl: 'developer',
+			de: 'entwickler',
+			es: 'desarrollador'
 		},
 		icon: 'code'
 	},

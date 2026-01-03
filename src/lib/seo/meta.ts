@@ -862,53 +862,157 @@ interface CategoryMeta {
 }
 
 export const categories: Record<string, Record<SupportedLang, CategoryMeta>> = {
-	tech: {
+	time: {
 		nl: {
-			name: 'Tech Tools',
-			title: 'Tech Tools - Developer & Encoding Tools',
-			description: 'Gratis developer tools: Base64, JSON formatter, hash generator, UUID, wachtwoord generator en meer.',
-			slug: 'tech'
+			name: 'Tijd',
+			title: 'Tijd Tools - Timers, Stopwatch & Countdown',
+			description: 'Gratis tijd tools: stopwatch, timer, pomodoro timer, countdown naar belangrijke data en meer.',
+			slug: 'tijd'
 		},
 		en: {
-			name: 'Tech Tools',
-			title: 'Tech Tools - Developer & Encoding Tools',
-			description: 'Free developer tools: Base64, JSON formatter, hash generator, UUID, password generator and more.',
-			slug: 'tech'
+			name: 'Time',
+			title: 'Time Tools - Timers, Stopwatch & Countdown',
+			description: 'Free time tools: stopwatch, timer, pomodoro timer, countdown to important dates and more.',
+			slug: 'time'
 		},
 		de: {
-			name: 'Tech Tools',
-			title: 'Tech Tools - Entwickler & Encoding Tools',
-			description: 'Kostenlose Entwickler-Tools: Base64, JSON Formatter, Hash Generator, UUID, Passwort Generator und mehr.',
-			slug: 'tech'
+			name: 'Zeit',
+			title: 'Zeit Tools - Timer, Stoppuhr & Countdown',
+			description: 'Kostenlose Zeit-Tools: Stoppuhr, Timer, Pomodoro-Timer, Countdown zu wichtigen Daten und mehr.',
+			slug: 'zeit'
 		},
 		es: {
-			name: 'Tech Tools',
-			title: 'Tech Tools - Herramientas de Desarrollo y Codificación',
-			description: 'Herramientas gratuitas para desarrolladores: Base64, JSON formatter, generador de hash, UUID, generador de contraseñas y más.',
-			slug: 'tech'
+			name: 'Tiempo',
+			title: 'Herramientas de Tiempo - Temporizadores, Cronómetro y Cuenta Regresiva',
+			description: 'Herramientas de tiempo gratuitas: cronómetro, temporizador, pomodoro, cuenta regresiva y más.',
+			slug: 'tiempo'
+		}
+	},
+	text: {
+		nl: {
+			name: 'Tekst',
+			title: 'Tekst Tools - Woorden Tellen, Sorteren & Bewerken',
+			description: 'Gratis tekst tools: woorden teller, karakter teller, tekst opschonen, regels sorteren en meer.',
+			slug: 'tekst'
+		},
+		en: {
+			name: 'Text',
+			title: 'Text Tools - Word Count, Sort & Edit',
+			description: 'Free text tools: word counter, character counter, text cleaner, sort lines and more.',
+			slug: 'text'
+		},
+		de: {
+			name: 'Text',
+			title: 'Text Tools - Wörter Zählen, Sortieren & Bearbeiten',
+			description: 'Kostenlose Text-Tools: Wortzähler, Zeichenzähler, Textbereiniger, Zeilen sortieren und mehr.',
+			slug: 'text'
+		},
+		es: {
+			name: 'Texto',
+			title: 'Herramientas de Texto - Contar Palabras, Ordenar y Editar',
+			description: 'Herramientas de texto gratuitas: contador de palabras, contador de caracteres, limpiador de texto, ordenar líneas y más.',
+			slug: 'texto'
+		}
+	},
+	calc: {
+		nl: {
+			name: 'Rekenmachines',
+			title: 'Rekenmachines - Percentage, Leeftijd & Eenheden',
+			description: 'Gratis rekenmachines: percentage calculator, leeftijd calculator, eenheden omrekenen en meer.',
+			slug: 'rekenmachines'
+		},
+		en: {
+			name: 'Calculators',
+			title: 'Calculators - Percentage, Age & Unit Conversion',
+			description: 'Free calculators: percentage calculator, age calculator, unit converter and more.',
+			slug: 'calculators'
+		},
+		de: {
+			name: 'Rechner',
+			title: 'Rechner - Prozent, Alter & Einheiten',
+			description: 'Kostenlose Rechner: Prozentrechner, Altersrechner, Einheitenumrechner und mehr.',
+			slug: 'rechner'
+		},
+		es: {
+			name: 'Calculadoras',
+			title: 'Calculadoras - Porcentaje, Edad y Conversión de Unidades',
+			description: 'Calculadoras gratuitas: calculadora de porcentajes, calculadora de edad, convertidor de unidades y más.',
+			slug: 'calculadoras'
+		}
+	},
+	generators: {
+		nl: {
+			name: 'Generatoren',
+			title: 'Generatoren - Random, Wachtwoord, QR Code & Meer',
+			description: 'Gratis generatoren: wachtwoord generator, UUID generator, QR code, dobbelstenen, muntje opgooien en meer.',
+			slug: 'generatoren'
+		},
+		en: {
+			name: 'Generators',
+			title: 'Generators - Random, Password, QR Code & More',
+			description: 'Free generators: password generator, UUID generator, QR code, dice roller, coin flip and more.',
+			slug: 'generators'
+		},
+		de: {
+			name: 'Generatoren',
+			title: 'Generatoren - Zufalls, Passwort, QR-Code & Mehr',
+			description: 'Kostenlose Generatoren: Passwort-Generator, UUID-Generator, QR-Code, Würfel, Münze werfen und mehr.',
+			slug: 'generatoren'
+		},
+		es: {
+			name: 'Generadores',
+			title: 'Generadores - Aleatorio, Contraseña, Código QR y Más',
+			description: 'Generadores gratuitos: generador de contraseñas, generador UUID, código QR, dados, lanzar moneda y más.',
+			slug: 'generadores'
+		}
+	},
+	dev: {
+		nl: {
+			name: 'Developer',
+			title: 'Developer Tools - Encoding, Formatting & Conversie',
+			description: 'Gratis developer tools: Base64, JSON formatter, hash generator, URL encoder, kleur picker en meer.',
+			slug: 'developer'
+		},
+		en: {
+			name: 'Developer',
+			title: 'Developer Tools - Encoding, Formatting & Conversion',
+			description: 'Free developer tools: Base64, JSON formatter, hash generator, URL encoder, color picker and more.',
+			slug: 'developer'
+		},
+		de: {
+			name: 'Entwickler',
+			title: 'Entwickler Tools - Encoding, Formatierung & Konvertierung',
+			description: 'Kostenlose Entwickler-Tools: Base64, JSON Formatter, Hash Generator, URL Encoder, Farbwähler und mehr.',
+			slug: 'entwickler'
+		},
+		es: {
+			name: 'Desarrollador',
+			title: 'Herramientas de Desarrollador - Codificación, Formato y Conversión',
+			description: 'Herramientas gratuitas para desarrolladores: Base64, JSON formatter, generador de hash, codificador URL, selector de color y más.',
+			slug: 'desarrollador'
 		}
 	},
 	social: {
 		nl: {
-			name: 'Social Tools',
+			name: 'Social Media',
 			title: 'Social Media Tools - Content & Preview Tools',
 			description: 'Gratis social media tools: safezone checker, bio lengte teller, OG image tester en meer.',
 			slug: 'social'
 		},
 		en: {
-			name: 'Social Tools',
+			name: 'Social Media',
 			title: 'Social Media Tools - Content & Preview Tools',
 			description: 'Free social media tools: safezone checker, bio length counter, OG image tester and more.',
 			slug: 'social'
 		},
 		de: {
-			name: 'Social Tools',
+			name: 'Social Media',
 			title: 'Social Media Tools - Content & Preview Tools',
 			description: 'Kostenlose Social-Media-Tools: Safezone Checker, Bio-Längen-Zähler, OG Image Tester und mehr.',
 			slug: 'social'
 		},
 		es: {
-			name: 'Social Tools',
+			name: 'Redes Sociales',
 			title: 'Herramientas de Redes Sociales - Contenido y Vista Previa',
 			description: 'Herramientas gratuitas de redes sociales: verificador de safezone, contador de bio, probador de imagen OG y más.',
 			slug: 'social'
@@ -916,54 +1020,28 @@ export const categories: Record<string, Record<SupportedLang, CategoryMeta>> = {
 	},
 	travel: {
 		nl: {
-			name: 'Travel Tools',
-			title: 'Reis Tools - Bagage & Planning Tools',
-			description: 'Gratis reis tools: koffer maten, gewicht schatter, jetlag planner en meer.',
-			slug: 'travel'
+			name: 'Reizen',
+			title: 'Reis Tools - Bagage & Jetlag Planning',
+			description: 'Gratis reis tools: koffer maten gids, jetlag planner en meer.',
+			slug: 'reizen'
 		},
 		en: {
-			name: 'Travel Tools',
-			title: 'Travel Tools - Luggage & Planning Tools',
-			description: 'Free travel tools: luggage size guide, weight estimator, jetlag planner and more.',
+			name: 'Travel',
+			title: 'Travel Tools - Luggage & Jetlag Planning',
+			description: 'Free travel tools: luggage size guide, jetlag planner and more.',
 			slug: 'travel'
 		},
 		de: {
-			name: 'Reise Tools',
-			title: 'Reise Tools - Gepäck & Planungstools',
-			description: 'Kostenlose Reise-Tools: Koffer-Größen-Guide, Gewichtsschätzer, Jetlag-Planer und mehr.',
-			slug: 'travel'
+			name: 'Reise',
+			title: 'Reise Tools - Gepäck & Jetlag Planung',
+			description: 'Kostenlose Reise-Tools: Koffer-Größen-Guide, Jetlag-Planer und mehr.',
+			slug: 'reise'
 		},
 		es: {
-			name: 'Herramientas de Viaje',
-			title: 'Herramientas de Viaje - Equipaje y Planificación',
-			description: 'Herramientas de viaje gratuitas: guía de tamaños de equipaje, estimador de peso, planificador de jetlag y más.',
-			slug: 'travel'
-		}
-	},
-	everyday: {
-		nl: {
-			name: 'Dagelijks',
-			title: 'Dagelijkse Tools - Timers, Tellers & Meer',
-			description: 'Gratis dagelijkse tools: stopwatch, timer, woorden teller, calculators en meer.',
-			slug: 'everyday'
-		},
-		en: {
-			name: 'Everyday',
-			title: 'Everyday Tools - Timers, Counters & More',
-			description: 'Free everyday tools: stopwatch, timer, word counter, calculators and more.',
-			slug: 'everyday'
-		},
-		de: {
-			name: 'Alltag',
-			title: 'Alltags-Tools - Timer, Zähler & Mehr',
-			description: 'Kostenlose Alltags-Tools: Stoppuhr, Timer, Wortzähler, Rechner und mehr.',
-			slug: 'everyday'
-		},
-		es: {
-			name: 'Cotidiano',
-			title: 'Herramientas Cotidianas - Temporizadores, Contadores y Más',
-			description: 'Herramientas cotidianas gratuitas: cronómetro, temporizador, contador de palabras, calculadoras y más.',
-			slug: 'everyday'
+			name: 'Viaje',
+			title: 'Herramientas de Viaje - Equipaje y Planificación de Jetlag',
+			description: 'Herramientas de viaje gratuitas: guía de tamaños de equipaje, planificador de jetlag y más.',
+			slug: 'viaje'
 		}
 	}
 };

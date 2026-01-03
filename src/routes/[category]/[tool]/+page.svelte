@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SEOHead from '$lib/components/SEOHead.svelte';
 	import ToolSchema from '$lib/components/ToolSchema.svelte';
+	import FAQSchema from '$lib/components/FAQSchema.svelte';
 	import { Card } from '$lib/components/ui';
 	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import RelatedTools from '$lib/components/RelatedTools.svelte';
@@ -73,6 +74,10 @@
 	description={meta.description}
 	url="https://ittytools.com{canonicalPath}"
 />
+
+{#if content?.sections.faq.items.length}
+	<FAQSchema faqs={content.sections.faq.items} />
+{/if}
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
 	<div class="mb-6">

@@ -91,8 +91,11 @@ export const commonLabels: Record<SupportedLanguage, {
 	}
 };
 
-// Tool-specific page content
+// Tool-specific page content - Comprehensive FAQ for SEO
 export const toolContent: Record<string, Record<SupportedLanguage, ToolPageContent>> = {
+	// ============================================
+	// EVERYDAY TOOLS
+	// ============================================
 	stopwatch: {
 		en: {
 			breadcrumb: 'Stopwatch',
