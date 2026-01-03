@@ -1,11 +1,22 @@
 <script lang="ts">
 	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { getAllToolsForLang, getSiteMeta, categories } from '$lib/seo/meta';
+	import { getToolPath, getCategoryPath, type CategoryKey } from '$lib/config';
 	import { goto } from '$app/navigation';
 
 	const lang = 'nl';
 	const siteMeta = getSiteMeta(lang);
 	const tools = getAllToolsForLang(lang);
+
+	// Helper to get proper tool URL
+	function toolUrl(toolKey: string): string {
+		return getToolPath(toolKey, lang);
+	}
+
+	// Helper to get proper category URL
+	function categoryUrl(categoryKey: CategoryKey): string {
+		return getCategoryPath(categoryKey, lang);
+	}
 
 	let searchQuery = $state('');
 	let selectedIndex = $state(0);
@@ -29,42 +40,30 @@
 	});
 
 	// Category data with icons and tools
-	const categoryData = [
+	const categoryData: Array<{ key: CategoryKey; icon: string; name: string; description: string }> = [
 		{
 			key: 'tech',
 			icon: '{ }',
 			name: 'Tech',
-			description: 'Encoding, hashing, JSON, passwords',
-			href: '/nl/tech',
-			color: 'bg-blue-50 border-blue-200 hover:border-blue-400',
-			tools: ['base64', 'json-formatter', 'hash-generator', 'uuid-generator', 'wachtwoord-generator']
+			description: 'Encoding, hashing, JSON, wachtwoorden'
 		},
 		{
 			key: 'social',
 			icon: '@',
 			name: 'Social',
-			description: 'Safezones, bio counters, previews',
-			href: '/nl/social',
-			color: 'bg-pink-50 border-pink-200 hover:border-pink-400',
-			tools: ['Coming soon']
+			description: 'Safezones, bio tellers, voorvertoningen'
 		},
 		{
 			key: 'travel',
 			icon: '→',
-			name: 'Travel',
-			description: 'Luggage, weight, jetlag planning',
-			href: '/nl/travel',
-			color: 'bg-green-50 border-green-200 hover:border-green-400',
-			tools: ['Coming soon']
+			name: 'Reizen',
+			description: 'Bagage, gewicht, jetlag planning'
 		},
 		{
 			key: 'everyday',
 			icon: '○',
 			name: 'Dagelijks',
-			description: 'Timers, tellers, calculators',
-			href: '/nl/everyday',
-			color: 'bg-orange-50 border-orange-200 hover:border-orange-400',
-			tools: ['stopwatch', 'timer', 'pomodoro', 'woorden-teller', 'klik-teller']
+			description: 'Timers, tellers, calculators'
 		}
 	];
 
@@ -80,7 +79,7 @@
 			selectedIndex = selectedIndex === 0 ? results.length - 1 : selectedIndex - 1;
 		} else if (e.key === 'Enter' && results[selectedIndex]) {
 			e.preventDefault();
-			goto(`/nl/${results[selectedIndex].slug}`);
+			goto(toolUrl(results[selectedIndex].key));
 		}
 	}
 
@@ -135,7 +134,7 @@
 						<label class="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-3">Zoek een tool</label>
 						<div class="relative">
 							<div class="flex items-center border-2 border-neutral-950 bg-white shadow-lg">
-								<span class="pl-4 pr-2 text-orange-600 font-mono font-bold text-lg">$</span>
+								<span class="pl-4 pr-2 w-2.5 h-5 bg-orange-500 animate-blink flex-shrink-0"></span>
 								<input
 									bind:this={searchInput}
 									bind:value={searchQuery}
@@ -158,7 +157,7 @@
 								{#if filteredTools().length > 0}
 									{#each filteredTools() as tool, i}
 										<a
-											href="/nl/{tool.slug}"
+											href={toolUrl(tool.key)}
 											class="flex items-center gap-3 px-4 py-2.5 transition-colors {i === selectedIndex ? 'bg-neutral-950 text-white' : 'hover:bg-neutral-100'}"
 										>
 											<span class="font-mono text-orange-600 text-sm {i === selectedIndex ? 'text-orange-400' : ''}">&gt;</span>
@@ -179,7 +178,7 @@
 									>Populaire tools</div>
 									{#each tools.slice(0, 5) as tool, i}
 										<a
-											href="/nl/{tool.slug}"
+											href={toolUrl(tool.key)}
 											class="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-100 transition-colors {!hasAnimated ? 'animate-fade-in-fast' : ''}"
 											style={!hasAnimated ? `animation-delay: ${500 + i * 80}ms` : ''}
 										>
@@ -203,8 +202,8 @@
 						</div>
 
 						<p class="text-xs text-neutral-400 mt-3 font-sans">
-							<kbd class="px-1.5 py-0.5 bg-neutral-100 border border-neutral-300 text-xs font-mono">⌘K</kbd>
-							<span class="ml-1">overal beschikbaar</span>
+							Druk op <kbd class="px-1.5 py-0.5 bg-neutral-100 border border-neutral-300 text-xs font-mono">K</kbd>
+							<span class="ml-1">om overal te zoeken</span>
 						</p>
 					</div>
 				</div>
@@ -222,7 +221,7 @@
 			<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
 				{#each categoryData as category, i}
 					<a
-						href={category.href}
+						href={categoryUrl(category.key)}
 						class="group relative p-5 sm:p-6 border-2 border-neutral-200 bg-white transition-all hover:border-neutral-950 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
 					>
 						<div class="flex items-start justify-between mb-4">
@@ -242,7 +241,7 @@
 		<div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
 			<div class="flex items-baseline justify-between mb-8">
 				<h2 class="text-xs font-bold uppercase tracking-widest text-neutral-400">Populaire tools</h2>
-				<a href="/nl/everyday" class="text-xs text-neutral-400 hover:text-orange-600 transition-colors font-mono">
+				<a href={categoryUrl('everyday')} class="text-xs text-neutral-400 hover:text-orange-600 transition-colors font-mono">
 					Bekijk alle →
 				</a>
 			</div>

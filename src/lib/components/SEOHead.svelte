@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Language } from '$lib/i18n';
+	import type { SupportedLang } from '$lib/config';
 
 	interface Props {
 		title: string;
@@ -7,7 +8,8 @@
 		keywords?: string[];
 		lang: Language;
 		canonicalPath: string;
-		alternatePath?: string; // Kept for backwards compatibility
+		alternatePath?: string; // Kept for backwards compatibility (old routes)
+		alternateUrls?: Record<SupportedLang, string>; // New: explicit URLs for each language
 		type?: 'website' | 'article';
 		image?: string;
 	}
@@ -19,6 +21,7 @@
 		lang,
 		canonicalPath,
 		alternatePath,
+		alternateUrls,
 		type = 'website',
 		image = '/og-image.png'
 	}: Props = $props();
@@ -27,6 +30,8 @@
 	let canonicalUrl = $derived(`${baseUrl}${canonicalPath}`);
 
 	// Generate hreflang URLs for all 4 languages
+	// If alternateUrls is provided, use those (new dynamic routes)
+	// Otherwise, fall back to path-based calculation (old static routes)
 	function getBasePath(path: string): string {
 		// Remove language prefix to get base path
 		if (path === '/' || path === '/nl' || path === '/de' || path === '/es') {
@@ -53,12 +58,22 @@
 
 	let basePath = $derived(getBasePath(canonicalPath));
 
-	let hreflangUrls = $derived({
-		en: `${baseUrl}${getLangPath(basePath, 'en')}`,
-		nl: `${baseUrl}${getLangPath(basePath, 'nl')}`,
-		de: `${baseUrl}${getLangPath(basePath, 'de')}`,
-		es: `${baseUrl}${getLangPath(basePath, 'es')}`
-	});
+	// Use explicit alternateUrls if provided, otherwise calculate from path
+	let hreflangUrls = $derived(
+		alternateUrls
+			? {
+					en: `${baseUrl}${alternateUrls.en}`,
+					nl: `${baseUrl}${alternateUrls.nl}`,
+					de: `${baseUrl}${alternateUrls.de}`,
+					es: `${baseUrl}${alternateUrls.es}`
+				}
+			: {
+					en: `${baseUrl}${getLangPath(basePath, 'en')}`,
+					nl: `${baseUrl}${getLangPath(basePath, 'nl')}`,
+					de: `${baseUrl}${getLangPath(basePath, 'de')}`,
+					es: `${baseUrl}${getLangPath(basePath, 'es')}`
+				}
+	);
 
 	// x-default points to English version
 	let xDefaultUrl = $derived(hreflangUrls.en);

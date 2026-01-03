@@ -1,77 +1,90 @@
 <script lang="ts">
-	import { currentLang } from '$lib/i18n';
-	import { getAllToolsForLang, type ToolMeta } from '$lib/seo/meta';
+	import { currentLang, t } from '$lib/i18n';
+	import { getToolsByCategory, getToolPath, toolRegistry, type ToolConfig } from '$lib/config';
+	import { getToolMeta } from '$lib/seo/meta';
 
 	interface Props {
-		currentSlug: string;
-		category?: 'timers' | 'counters' | 'random' | 'calculators';
+		currentToolKey: string;
+		category: 'everyday' | 'tech' | 'social' | 'travel';
 		limit?: number;
 	}
 
-	let { currentSlug, category, limit = 3 }: Props = $props();
+	let { currentToolKey, category, limit = 3 }: Props = $props();
 
 	let lang = $derived($currentLang);
-	let allTools = $derived(getAllToolsForLang(lang));
-
-	// Define tool categories
-	const categories: Record<string, string[]> = {
-		timers: ['stopwatch', 'timer', 'pomodoro', 'datum-aftellen', 'date-countdown'],
-		counters: ['woorden-teller', 'word-counter', 'karakter-teller', 'character-counter', 'klik-teller', 'click-counter'],
-		random: ['rad-van-fortuin', 'wheel-spinner', 'dobbelsteen', 'dice-roller', 'muntje-opgooien', 'coin-flip', 'willekeurig-getal', 'random-number', 'naam-picker', 'name-picker'],
-		calculators: ['percentage-calculator', 'leeftijd-calculator', 'age-calculator', 'eenheden-omrekenen', 'unit-converter'],
-		developers: ['base64', 'json-formatter', 'uuid-generator', 'hash-generator', 'url-encoder', 'kleur-picker', 'color-picker'],
-		generators: ['wachtwoord-generator', 'password-generator', 'qr-code-generator']
-	};
 
 	let relatedTools = $derived(() => {
-		// Find current tool's category
-		let currentCategory = category;
-		if (!currentCategory) {
-			for (const [cat, slugs] of Object.entries(categories)) {
-				if (slugs.includes(currentSlug)) {
-					currentCategory = cat as 'timers' | 'counters' | 'random' | 'calculators';
-					break;
-				}
-			}
-		}
-
 		// Get tools from the same category, excluding current
-		let related = allTools.filter(tool => {
-			if (tool.slug === currentSlug) return false;
-			if (currentCategory && categories[currentCategory]) {
-				return categories[currentCategory].includes(tool.slug);
-			}
-			return true;
-		});
+		const categoryTools = getToolsByCategory(category);
+		let related = categoryTools.filter((tool) => tool.key !== currentToolKey);
 
-		// If not enough from same category, add others
+		// If not enough from same category, add from other categories
 		if (related.length < limit) {
-			const others = allTools.filter(tool =>
-				tool.slug !== currentSlug && !related.some(r => r.slug === tool.slug)
-			);
-			related = [...related, ...others];
+			const allCategories: ToolConfig['category'][] = ['everyday', 'tech', 'social', 'travel'];
+			for (const cat of allCategories) {
+				if (cat === category) continue;
+				const otherTools = getToolsByCategory(cat);
+				for (const tool of otherTools) {
+					if (!related.some((r) => r.key === tool.key)) {
+						related.push(tool);
+					}
+					if (related.length >= limit) break;
+				}
+				if (related.length >= limit) break;
+			}
 		}
 
 		return related.slice(0, limit);
 	});
 
-	function getToolPath(slug: string): string {
-		return lang === 'en' ? `/en/${slug}` : `/${slug}`;
+	function getToolDisplay(toolKey: string): { title: string; description: string } {
+		// Try translations first
+		const toolTranslations = ($t as any).tools?.[toolKey];
+		if (toolTranslations?.name && toolTranslations?.description) {
+			return { title: toolTranslations.name, description: toolTranslations.description };
+		}
+
+		// Fallback to meta
+		const meta = getToolMeta(toolKey, lang);
+		if (meta) {
+			return { title: meta.title.split(' - ')[0], description: meta.description };
+		}
+
+		// Last resort: format toolKey
+		return {
+			title: toolKey.replace(/([A-Z])/g, ' $1').trim(),
+			description: ''
+		};
 	}
 </script>
 
 {#if relatedTools().length > 0}
 	<section class="mt-16 pt-8 border-t-2 border-neutral-200">
 		<h2 class="section-header">
-			{lang === 'nl' ? 'Gerelateerde tools' : 'Related tools'}
+			{lang === 'nl'
+				? 'Gerelateerde tools'
+				: lang === 'de'
+					? 'Verwandte Tools'
+					: lang === 'es'
+						? 'Herramientas relacionadas'
+						: 'Related tools'}
 		</h2>
 
 		<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 			{#each relatedTools() as tool}
-				<a href={getToolPath(tool.slug)} class="tool-card">
-					<h3 class="tool-card-title">{tool.title.split(' - ')[0]}</h3>
-					<p class="tool-card-description line-clamp-2">{tool.description}</p>
-					<span class="tool-card-arrow">{lang === 'nl' ? 'Openen' : 'Open'} →</span>
+				{@const display = getToolDisplay(tool.key)}
+				<a href={getToolPath(tool.key, lang)} class="tool-card">
+					<h3 class="tool-card-title">{display.title}</h3>
+					<p class="tool-card-description line-clamp-2">{display.description}</p>
+					<span class="tool-card-arrow"
+						>{lang === 'nl'
+							? 'Openen'
+							: lang === 'de'
+								? 'Öffnen'
+								: lang === 'es'
+									? 'Abrir'
+									: 'Open'} →</span
+					>
 				</a>
 			{/each}
 		</div>

@@ -4,6 +4,8 @@
 	import { goto } from '$app/navigation';
 	import { setLanguage, getLanguageFromPath, t } from '$lib/i18n';
 	import { getAllToolsForLang } from '$lib/seo/meta';
+	import { getTranslatedPath, getCategoryPath as getConfigCategoryPath, getToolPath as getConfigToolPath, getToolsByCategory, categoryKeys as configCategoryKeys, type SupportedLang, type CategoryKey } from '$lib/config';
+	import { getToolMeta } from '$lib/seo/meta';
 	import CommandPalette from '$lib/components/CommandPalette.svelte';
 	import ShortcutsOverlay from '$lib/components/ShortcutsOverlay.svelte';
 	import OrganizationSchema from '$lib/components/OrganizationSchema.svelte';
@@ -33,13 +35,30 @@
 		).slice(0, 8);
 	});
 
-	// Categories for nav
-	const categories = [
-		{ key: 'tech', label: 'Tech', href: '/tech' },
-		{ key: 'social', label: 'Social', href: '/social' },
-		{ key: 'travel', label: 'Travel', href: '/travel' },
-		{ key: 'everyday', label: 'Everyday', href: '/everyday' }
-	];
+	// Categories for nav - using keys, labels derived based on language
+	const categoryKeys: CategoryKey[] = ['tech', 'social', 'travel', 'everyday'];
+	const categoryLabels: Record<CategoryKey, Record<SupportedLang, string>> = {
+		tech: { en: 'Tech', nl: 'Tech', de: 'Tech', es: 'Tech' },
+		social: { en: 'Social', nl: 'Social', de: 'Social', es: 'Social' },
+		travel: { en: 'Travel', nl: 'Reizen', de: 'Reise', es: 'Viaje' },
+		everyday: { en: 'Everyday', nl: 'Dagelijks', de: 'Alltag', es: 'Cotidiano' }
+	};
+
+	// Get tools per category for footer
+	let footerToolsByCategory = $derived(
+		categoryKeys.map(catKey => ({
+			key: catKey,
+			label: categoryLabels[catKey][lang as SupportedLang],
+			tools: getToolsByCategory(catKey).map(({ key: toolKey }) => {
+				const meta = getToolMeta(toolKey, lang as SupportedLang);
+				return {
+					key: toolKey,
+					name: meta?.title.split(' - ')[0] || toolKey,
+					path: getConfigToolPath(toolKey, lang as SupportedLang)
+				};
+			})
+		}))
+	);
 
 	$effect(() => {
 		setLanguage(lang);
@@ -95,9 +114,8 @@
 		return prefix ? `${prefix}/${slug}` : `/${slug}`;
 	}
 
-	function getCategoryPath(href: string): string {
-		const prefix = getLangPrefix();
-		return prefix ? `${prefix}${href}` : href;
+	function getCategoryPath(categoryKey: CategoryKey): string {
+		return getConfigCategoryPath(categoryKey, lang as SupportedLang);
 	}
 
 	function getHomePath(): string {
@@ -114,7 +132,17 @@
 
 	function getLangPath(targetLang: string): string {
 		const path = page.url.pathname;
-		// Remove current lang prefix
+
+		// Try to use the new path translation system first
+		// This handles category-based routes with localized slugs
+		try {
+			const translated = getTranslatedPath(path, targetLang as SupportedLang);
+			if (translated) return translated;
+		} catch {
+			// Fall back to old logic for non-category routes
+		}
+
+		// Fallback: simple prefix swap (for old routes or if translation fails)
 		let basePath = path;
 		if (path.startsWith('/nl/') || path.startsWith('/nl')) {
 			basePath = path.replace(/^\/nl/, '');
@@ -151,12 +179,12 @@
 
 				<!-- Categories - Desktop -->
 				<div class="hidden lg:flex items-center gap-1">
-					{#each categories as cat}
+					{#each categoryKeys as catKey}
 						<a
-							href={getCategoryPath(cat.href)}
+							href={getCategoryPath(catKey)}
 							class="px-3 py-1.5 text-xs font-medium text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100 transition-colors uppercase tracking-wider"
 						>
-							{cat.label}
+							{categoryLabels[catKey][lang as SupportedLang]}
 						</a>
 					{/each}
 				</div>
@@ -168,8 +196,7 @@
 							onclick={() => { searchOpen = true; setTimeout(() => searchInput?.focus(), 50); }}
 							class="w-full flex items-center gap-3 px-4 py-2 text-sm text-neutral-400 border-2 border-neutral-200 hover:border-neutral-400 bg-neutral-50 transition-colors text-left"
 						>
-							<span class="text-orange-600 font-mono">$</span>
-							<span class="flex-1">Search tools...</span>
+							<span class="flex-1">{lang === 'nl' ? 'Zoek tools...' : lang === 'de' ? 'Tools suchen...' : lang === 'es' ? 'Buscar herramientas...' : 'Search tools...'}</span>
 							<kbd class="px-1.5 py-0.5 bg-white border border-neutral-300 text-[10px] font-mono">K</kbd>
 						</button>
 					</div>
@@ -193,6 +220,7 @@
 								{#each langOptions as opt}
 									<a
 										href={getLangPath(opt.code)}
+										data-sveltekit-reload
 										class="block px-3 py-1.5 text-xs font-bold uppercase tracking-wider {lang === opt.code ? 'text-orange-600 bg-neutral-100' : 'text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100'}"
 									>
 										{opt.label}
@@ -226,13 +254,13 @@
 			{#if mobileMenuOpen}
 				<div class="lg:hidden py-4 border-t-2 border-neutral-200">
 					<div class="flex flex-wrap gap-2 mb-4">
-						{#each categories as cat}
+						{#each categoryKeys as catKey}
 							<a
-								href={getCategoryPath(cat.href)}
+								href={getCategoryPath(catKey)}
 								class="px-3 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-950 border border-neutral-200 hover:border-neutral-950"
 								onclick={() => mobileMenuOpen = false}
 							>
-								{cat.label}
+								{categoryLabels[catKey][lang as SupportedLang]}
 							</a>
 						{/each}
 					</div>
@@ -258,13 +286,13 @@
 			<div class="max-w-2xl mx-auto mt-20 mx-4" onclick={(e) => e.stopPropagation()}>
 				<div class="bg-white border-2 border-neutral-950 shadow-2xl">
 					<div class="flex items-center gap-3 px-4 py-3 border-b-2 border-neutral-200">
-						<span class="text-orange-600 font-mono font-bold text-lg">$</span>
+						<span class="w-2.5 h-5 bg-orange-500 animate-blink flex-shrink-0"></span>
 						<input
 							bind:this={searchInput}
 							bind:value={searchQuery}
 							onkeydown={handleSearchKeydown}
 							type="text"
-							placeholder="Search tools..."
+							placeholder={lang === 'nl' ? 'Zoek tools...' : lang === 'de' ? 'Tools suchen...' : lang === 'es' ? 'Buscar herramientas...' : 'Search tools...'}
 							class="flex-1 bg-transparent outline-none font-mono text-lg"
 							autocomplete="off"
 							spellcheck="false"
@@ -305,48 +333,19 @@
 
 	<footer class="border-t-2 border-neutral-200 mt-auto bg-neutral-50" role="contentinfo">
 		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-			<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-				<div>
-					<h3 class="font-bold text-xs uppercase tracking-wider text-neutral-400 mb-4">Categories</h3>
-					<ul class="space-y-2 text-sm">
-						{#each categories as cat}
-							<li><a href={getCategoryPath(cat.href)} class="text-neutral-600 hover:text-orange-600">{cat.label}</a></li>
-						{/each}
-					</ul>
-				</div>
-				<div>
-					<h3 class="font-bold text-xs uppercase tracking-wider text-neutral-400 mb-4">Timers</h3>
-					<ul class="space-y-2 text-sm">
-						<li><a href={getToolPath('stopwatch')} class="text-neutral-600 hover:text-orange-600">Stopwatch</a></li>
-						<li><a href={getToolPath('timer')} class="text-neutral-600 hover:text-orange-600">Timer</a></li>
-						<li><a href={getToolPath('pomodoro')} class="text-neutral-600 hover:text-orange-600">Pomodoro</a></li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="font-bold text-xs uppercase tracking-wider text-neutral-400 mb-4">Counters</h3>
-					<ul class="space-y-2 text-sm">
-						<li><a href={getToolPath('word-counter')} class="text-neutral-600 hover:text-orange-600">Word Counter</a></li>
-						<li><a href={getToolPath('character-counter')} class="text-neutral-600 hover:text-orange-600">Character Counter</a></li>
-						<li><a href={getToolPath('click-counter')} class="text-neutral-600 hover:text-orange-600">Click Counter</a></li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="font-bold text-xs uppercase tracking-wider text-neutral-400 mb-4">Developers</h3>
-					<ul class="space-y-2 text-sm">
-						<li><a href={getToolPath('base64')} class="text-neutral-600 hover:text-orange-600">Base64</a></li>
-						<li><a href={getToolPath('json-formatter')} class="text-neutral-600 hover:text-orange-600">JSON</a></li>
-						<li><a href={getToolPath('hash-generator')} class="text-neutral-600 hover:text-orange-600">Hash</a></li>
-						<li><a href={getToolPath('uuid-generator')} class="text-neutral-600 hover:text-orange-600">UUID</a></li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="font-bold text-xs uppercase tracking-wider text-neutral-400 mb-4">Random</h3>
-					<ul class="space-y-2 text-sm">
-						<li><a href={getToolPath('wheel-spinner')} class="text-neutral-600 hover:text-orange-600">Wheel Spinner</a></li>
-						<li><a href={getToolPath('dice-roller')} class="text-neutral-600 hover:text-orange-600">Dice Roller</a></li>
-						<li><a href={getToolPath('coin-flip')} class="text-neutral-600 hover:text-orange-600">Coin Flip</a></li>
-					</ul>
-				</div>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+				{#each footerToolsByCategory as category}
+					<div>
+						<h3 class="font-bold text-xs uppercase tracking-wider text-neutral-400 mb-4">
+							<a href={getCategoryPath(category.key)} class="hover:text-orange-600">{category.label}</a>
+						</h3>
+						<ul class="space-y-2 text-sm">
+							{#each category.tools as tool}
+								<li><a href={tool.path} class="text-neutral-600 hover:text-orange-600">{tool.name}</a></li>
+							{/each}
+						</ul>
+					</div>
+				{/each}
 			</div>
 			<div class="mt-12 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row justify-between items-center gap-4">
 				<div class="flex items-center gap-4">
@@ -363,7 +362,7 @@
 				<div class="flex items-center gap-4">
 					<div class="flex gap-2 text-xs">
 						{#each langOptions as opt}
-							<a href={getLangPath(opt.code)} class="text-neutral-400 hover:text-neutral-950 {lang === opt.code ? 'text-orange-600' : ''}">{opt.label}</a>
+							<a href={getLangPath(opt.code)} data-sveltekit-reload class="text-neutral-400 hover:text-neutral-950 {lang === opt.code ? 'text-orange-600' : ''}">{opt.label}</a>
 						{/each}
 					</div>
 					<p class="text-xs text-neutral-400">
