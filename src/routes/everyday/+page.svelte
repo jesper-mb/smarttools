@@ -36,8 +36,8 @@
 	title={category.title}
 	description={category.description}
 	{lang}
-	canonicalPath="/en/everyday"
-	alternatePath="/everyday"
+	canonicalPath="/everyday"
+	alternatePath="/nl/everyday"
 />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
@@ -66,7 +66,7 @@
 				</h2>
 				<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
 					{#each group.tools as tool}
-						<a href="/en/{tool.slug}" class="group p-6 border-2 border-neutral-200 hover:border-orange-400 bg-white transition-all hover:shadow-lg">
+						<a href="/{tool.slug}" class="group p-6 border-2 border-neutral-200 hover:border-orange-400 bg-white transition-all hover:shadow-lg">
 							<h3 class="font-bold text-neutral-950 mb-1 group-hover:text-orange-700">{tool.title.split(' - ')[0]}</h3>
 							<p class="text-sm text-neutral-500 line-clamp-2">{tool.description}</p>
 						</a>

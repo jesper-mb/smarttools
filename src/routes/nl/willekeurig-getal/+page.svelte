@@ -18,7 +18,7 @@
 	keywords={meta.keywords}
 	{lang}
 	canonicalPath="/willekeurig-getal"
-	alternatePath="/en/random-number"
+	alternatePath="/random-number"
 />
 
 <ToolSchema

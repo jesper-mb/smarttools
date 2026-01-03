@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/dice-roller"
-	alternatePath="/dobbelsteen"
+	canonicalPath="/dice-roller"
+	alternatePath="/nl/dobbelsteen"
 />
 
 <ToolSchema

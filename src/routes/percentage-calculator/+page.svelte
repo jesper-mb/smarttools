@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/percentage-calculator"
-	alternatePath="/percentage-calculator"
+	canonicalPath="/percentage-calculator"
+	alternatePath="/nl/percentage-calculator"
 />
 
 <ToolSchema

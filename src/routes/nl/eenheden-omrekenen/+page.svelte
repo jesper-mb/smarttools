@@ -11,7 +11,7 @@
 	const meta = getToolMeta('unitConverter', lang)!;
 </script>
 
-<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/eenheden-omrekenen" alternatePath="/en/unit-converter" />
+<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/nl/eenheden-omrekenen" alternatePath="/unit-converter" />
 <ToolSchema name={meta.title} description={meta.description} url="https://smarttools.nl/eenheden-omrekenen" />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">

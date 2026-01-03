@@ -11,7 +11,7 @@
 	const meta = getToolMeta('base64', lang)!;
 </script>
 
-<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/en/base64" alternatePath="/base64" />
+<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/base64" alternatePath="/nl/base64" />
 <ToolSchema name={meta.title} description={meta.description} url="https://smarttools.nl/en/base64" />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">

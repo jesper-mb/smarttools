@@ -18,8 +18,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/social/og-image-tester"
-	alternatePath="/en/social/og-image-tester"
+	canonicalPath="/nl/social/og-image-tester"
+	alternatePath="/social/og-image-tester"
 />
 <ToolSchema
 	name={meta.title}

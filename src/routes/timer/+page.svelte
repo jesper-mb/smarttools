@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/timer"
-	alternatePath="/timer"
+	canonicalPath="/timer"
+	alternatePath="/nl/timer"
 />
 
 <ToolSchema

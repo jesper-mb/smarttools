@@ -1,5 +1,7 @@
 import type { Language } from '$lib/i18n';
 
+export type SupportedLang = 'en' | 'nl' | 'de' | 'es';
+
 export interface ToolMeta {
 	title: string;
 	description: string;
@@ -7,9 +9,12 @@ export interface ToolMeta {
 	slug: string;
 }
 
+// All 4 languages supported, with fallback to English
 export interface ToolMetaByLang {
-	nl: ToolMeta;
 	en: ToolMeta;
+	nl: ToolMeta;
+	de?: ToolMeta;
+	es?: ToolMeta;
 }
 
 export const toolsMeta: Record<string, ToolMetaByLang> = {
@@ -25,6 +30,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Free online stopwatch with lap timer. Start, stop and reset with keyboard shortcuts. Millisecond precision. No registration required.',
 			keywords: ['online stopwatch', 'free stopwatch', 'stopwatch timer', 'lap timer', 'stopwatch with laps'],
 			slug: 'stopwatch'
+		},
+		de: {
+			title: 'Online Stoppuhr - Kostenloser Timer mit Runden',
+			description: 'Kostenlose Online-Stoppuhr mit Rundentimer. Start, Stopp und Reset mit Tastatur. Millisekunden-Präzision. Keine Registrierung erforderlich.',
+			keywords: ['online stoppuhr', 'kostenlose stoppuhr', 'stoppuhr timer', 'rundentimer', 'stoppuhr mit runden'],
+			slug: 'stopwatch'
+		},
+		es: {
+			title: 'Cronómetro Online - Temporizador Gratis con Vueltas',
+			description: 'Cronómetro online gratuito con temporizador de vueltas. Iniciar, detener y reiniciar con atajos de teclado. Precisión de milisegundos. Sin registro.',
+			keywords: ['cronómetro online', 'cronómetro gratis', 'temporizador', 'cronómetro con vueltas', 'lap timer'],
+			slug: 'stopwatch'
 		}
 	},
 	timer: {
@@ -38,6 +55,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Online Timer - Countdown with Alarm',
 			description: 'Free countdown timer with alarm. Set minutes and seconds and start counting down. Perfect for cooking, sports or studying.',
 			keywords: ['online timer', 'countdown timer', 'timer with alarm', 'free timer', 'cooking timer'],
+			slug: 'timer'
+		},
+		de: {
+			title: 'Online Timer - Countdown mit Alarm',
+			description: 'Kostenloser Countdown-Timer mit Alarm. Minuten und Sekunden einstellen und runterzählen. Perfekt zum Kochen, Sport oder Lernen.',
+			keywords: ['online timer', 'countdown timer', 'timer mit alarm', 'kostenloser timer', 'küchentimer'],
+			slug: 'timer'
+		},
+		es: {
+			title: 'Temporizador Online - Cuenta Regresiva con Alarma',
+			description: 'Temporizador de cuenta regresiva gratuito con alarma. Configura minutos y segundos. Perfecto para cocinar, deportes o estudiar.',
+			keywords: ['temporizador online', 'cuenta regresiva', 'temporizador con alarma', 'timer gratis', 'temporizador cocina'],
 			slug: 'timer'
 		}
 	},
@@ -53,6 +82,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Free Pomodoro timer for better focus. 25 minutes work, 5 minutes break. Boost your productivity with the Pomodoro technique.',
 			keywords: ['pomodoro timer', 'pomodoro technique', 'focus timer', 'productivity timer', 'study timer'],
 			slug: 'pomodoro'
+		},
+		de: {
+			title: 'Pomodoro Timer - Fokus & Produktivität',
+			description: 'Kostenloser Pomodoro-Timer für besseren Fokus. 25 Minuten arbeiten, 5 Minuten Pause. Steigern Sie Ihre Produktivität mit der Pomodoro-Technik.',
+			keywords: ['pomodoro timer', 'pomodoro technik', 'fokus timer', 'produktivität timer', 'lern timer'],
+			slug: 'pomodoro'
+		},
+		es: {
+			title: 'Temporizador Pomodoro - Enfoque y Productividad',
+			description: 'Temporizador Pomodoro gratuito para mejor enfoque. 25 minutos de trabajo, 5 minutos de descanso. Mejora tu productividad con la técnica Pomodoro.',
+			keywords: ['temporizador pomodoro', 'técnica pomodoro', 'timer enfoque', 'timer productividad', 'timer estudio'],
+			slug: 'pomodoro'
 		}
 	},
 	wordCounter: {
@@ -66,6 +107,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Word Counter - Count Words & Characters Online',
 			description: 'Instantly count words, characters and sentences in your text. Free online tool for essays, articles and social media posts.',
 			keywords: ['word counter', 'count words', 'character counter', 'word count online', 'text counter'],
+			slug: 'word-counter'
+		},
+		de: {
+			title: 'Wortzähler - Wörter & Zeichen Online Zählen',
+			description: 'Zählen Sie sofort Wörter, Zeichen und Sätze in Ihrem Text. Kostenloses Online-Tool für Essays, Artikel und Social-Media-Posts.',
+			keywords: ['wortzähler', 'wörter zählen', 'zeichen zählen', 'word count online', 'textzähler'],
+			slug: 'word-counter'
+		},
+		es: {
+			title: 'Contador de Palabras - Contar Palabras y Caracteres',
+			description: 'Cuenta palabras, caracteres y oraciones al instante. Herramienta gratuita para ensayos, artículos y redes sociales.',
+			keywords: ['contador de palabras', 'contar palabras', 'contador de caracteres', 'word count', 'contador texto'],
 			slug: 'word-counter'
 		}
 	},
@@ -81,6 +134,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Count characters with or without spaces. Perfect for Twitter, Instagram and other social media with character limits.',
 			keywords: ['character counter', 'count characters', 'character count', 'twitter limit', 'text length'],
 			slug: 'character-counter'
+		},
+		de: {
+			title: 'Zeichenzähler - Zeichen Online Zählen',
+			description: 'Zählen Sie Zeichen mit oder ohne Leerzeichen. Perfekt für Twitter, Instagram und andere Social-Media-Plattformen mit Zeichenlimits.',
+			keywords: ['zeichenzähler', 'zeichen zählen', 'character count', 'twitter limit', 'textlänge'],
+			slug: 'character-counter'
+		},
+		es: {
+			title: 'Contador de Caracteres - Contar Caracteres Online',
+			description: 'Cuenta caracteres con o sin espacios. Perfecto para Twitter, Instagram y otras redes sociales con límites de caracteres.',
+			keywords: ['contador de caracteres', 'contar caracteres', 'límite twitter', 'longitud texto', 'character count'],
+			slug: 'character-counter'
 		}
 	},
 	clickCounter: {
@@ -94,6 +159,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Click Counter - Online Tally Counter',
 			description: 'Simple online tally counter. Count with clicks or keyboard. Perfect for inventory, counting people or keeping score.',
 			keywords: ['click counter', 'tally counter', 'online counter', 'people counter', 'score counter'],
+			slug: 'click-counter'
+		},
+		de: {
+			title: 'Klickzähler - Online Stückzähler',
+			description: 'Einfacher Online-Stückzähler. Zählen mit Klicks oder Tastatur. Perfekt für Inventar, Personenzählung oder Punktestand.',
+			keywords: ['klickzähler', 'stückzähler', 'online zähler', 'personenzähler', 'punktezähler'],
+			slug: 'click-counter'
+		},
+		es: {
+			title: 'Contador de Clics - Contador Online',
+			description: 'Contador online simple. Cuenta con clics o teclado. Perfecto para inventario, contar personas o llevar puntuación.',
+			keywords: ['contador de clics', 'contador tally', 'contador online', 'contador personas', 'contador puntos'],
 			slug: 'click-counter'
 		}
 	},
@@ -109,6 +186,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Free online wheel spinner. Add your own options and spin the wheel. Perfect for games, raffles and decisions.',
 			keywords: ['wheel spinner', 'spin the wheel', 'random wheel', 'prize wheel', 'decision wheel'],
 			slug: 'wheel-spinner'
+		},
+		de: {
+			title: 'Glücksrad - Drehen & das Schicksal Entscheiden Lassen',
+			description: 'Kostenloses Online-Glücksrad. Fügen Sie Ihre eigenen Optionen hinzu und drehen Sie das Rad. Perfekt für Spiele, Verlosungen und Entscheidungen.',
+			keywords: ['glücksrad', 'wheel spinner', 'drehrad', 'verlosungsrad', 'zufallsauswahl'],
+			slug: 'wheel-spinner'
+		},
+		es: {
+			title: 'Ruleta de la Suerte - Gira y Deja que el Destino Decida',
+			description: 'Ruleta online gratuita. Agrega tus opciones y gira la rueda. Perfecto para juegos, sorteos y decisiones.',
+			keywords: ['ruleta de la suerte', 'girar ruleta', 'rueda aleatoria', 'rueda de premios', 'rueda de decisiones'],
+			slug: 'wheel-spinner'
 		}
 	},
 	dice: {
@@ -122,6 +211,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Dice Roller - Roll Virtual Dice Online',
 			description: 'Roll virtual dice online. Choose the number of dice. Perfect for board games and D&D.',
 			keywords: ['dice roller', 'roll dice online', 'virtual dice', 'online dice', 'd20 roller'],
+			slug: 'dice-roller'
+		},
+		de: {
+			title: 'Würfel Werfen - Virtuelle Würfel Online',
+			description: 'Würfeln Sie virtuelle Würfel online. Wählen Sie die Anzahl der Würfel. Perfekt für Brettspiele und D&D.',
+			keywords: ['würfel werfen', 'online würfel', 'virtuelle würfel', 'dice roller', 'würfel'],
+			slug: 'dice-roller'
+		},
+		es: {
+			title: 'Tirar Dados - Dados Virtuales Online',
+			description: 'Tira dados virtuales online. Elige el número de dados. Perfecto para juegos de mesa y D&D.',
+			keywords: ['tirar dados', 'dados online', 'dados virtuales', 'dice roller', 'dados'],
 			slug: 'dice-roller'
 		}
 	},
@@ -137,6 +238,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Flip a virtual coin. Heads or tails? Let chance decide with this free online coin flip.',
 			keywords: ['coin flip', 'heads or tails', 'flip a coin', 'virtual coin', 'random choice'],
 			slug: 'coin-flip'
+		},
+		de: {
+			title: 'Münze Werfen - Kopf oder Zahl Online',
+			description: 'Werfen Sie eine virtuelle Münze. Kopf oder Zahl? Lassen Sie den Zufall entscheiden.',
+			keywords: ['münze werfen', 'kopf oder zahl', 'coin flip', 'virtuelle münze', 'zufällige wahl'],
+			slug: 'coin-flip'
+		},
+		es: {
+			title: 'Lanzar Moneda - Cara o Cruz Online',
+			description: 'Lanza una moneda virtual. ¿Cara o cruz? Deja que el azar decida con este coin flip gratuito.',
+			keywords: ['lanzar moneda', 'cara o cruz', 'coin flip', 'moneda virtual', 'elección aleatoria'],
+			slug: 'coin-flip'
 		}
 	},
 	randomNumber: {
@@ -150,6 +263,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Random Number Generator - Generate Random Numbers',
 			description: 'Generate a random number between two values. Set minimum and maximum for random numbers.',
 			keywords: ['random number generator', 'random number', 'number generator', 'random picker', 'rng'],
+			slug: 'random-number'
+		},
+		de: {
+			title: 'Zufallszahlengenerator - Zufallszahlen Generieren',
+			description: 'Generieren Sie eine Zufallszahl zwischen zwei Werten. Minimum und Maximum für Zufallszahlen festlegen.',
+			keywords: ['zufallszahlengenerator', 'zufallszahl', 'zahlengenerator', 'random picker', 'rng'],
+			slug: 'random-number'
+		},
+		es: {
+			title: 'Generador de Números Aleatorios',
+			description: 'Genera un número aleatorio entre dos valores. Establece mínimo y máximo para números aleatorios.',
+			keywords: ['generador números aleatorios', 'número aleatorio', 'generador de números', 'random picker', 'rng'],
 			slug: 'random-number'
 		}
 	},
@@ -165,6 +290,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Pick a random name from your list. Perfect for raffles, group assignments and prize drawings.',
 			keywords: ['name picker', 'random name', 'pick a name', 'raffle picker', 'random selector'],
 			slug: 'name-picker'
+		},
+		de: {
+			title: 'Namenspicker - Zufälligen Namen Ziehen',
+			description: 'Ziehen Sie einen zufälligen Namen aus Ihrer Liste. Perfekt für Verlosungen, Gruppenaufteilung und Preisziehungen.',
+			keywords: ['namenspicker', 'zufälliger name', 'namen ziehen', 'verlosung', 'zufallsauswahl'],
+			slug: 'name-picker'
+		},
+		es: {
+			title: 'Selector de Nombres - Elegir Nombre Aleatorio',
+			description: 'Elige un nombre aleatorio de tu lista. Perfecto para sorteos, asignación de grupos y rifas.',
+			keywords: ['selector de nombres', 'nombre aleatorio', 'elegir nombre', 'sorteo', 'selector aleatorio'],
+			slug: 'name-picker'
 		}
 	},
 	percentageCalc: {
@@ -178,6 +315,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Percentage Calculator - Calculate Percentages',
 			description: 'Calculate percentages quickly and easily. What is X% of Y? What percent is A of B?',
 			keywords: ['percentage calculator', 'calculate percentage', 'percent calculator', 'percentage of', 'discount calculator'],
+			slug: 'percentage-calculator'
+		},
+		de: {
+			title: 'Prozentrechner - Prozente Berechnen',
+			description: 'Berechnen Sie Prozente schnell und einfach. Was ist X% von Y? Wie viel Prozent ist A von B?',
+			keywords: ['prozentrechner', 'prozent berechnen', 'prozent rechner', 'prozent von', 'rabatt berechnen'],
+			slug: 'percentage-calculator'
+		},
+		es: {
+			title: 'Calculadora de Porcentajes - Calcular Porcentajes',
+			description: 'Calcula porcentajes rápida y fácilmente. ¿Qué es X% de Y? ¿Qué porcentaje es A de B?',
+			keywords: ['calculadora porcentajes', 'calcular porcentaje', 'calculadora de porcentaje', 'porcentaje de', 'calcular descuento'],
 			slug: 'percentage-calculator'
 		}
 	},
@@ -193,6 +342,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Count down to your birthday, New Year, Christmas or any special date. How many days, hours and minutes left?',
 			keywords: ['date countdown', 'countdown timer', 'days until', 'countdown to date', 'new year countdown'],
 			slug: 'date-countdown'
+		},
+		de: {
+			title: 'Datums-Countdown - Countdown zu Besonderen Tagen',
+			description: 'Zählen Sie zu Ihrem Geburtstag, Neujahr, Weihnachten oder einem anderen besonderen Datum herunter. Wie viele Tage, Stunden und Minuten noch?',
+			keywords: ['datums countdown', 'countdown timer', 'tage bis', 'countdown zu datum', 'neujahr countdown'],
+			slug: 'date-countdown'
+		},
+		es: {
+			title: 'Cuenta Regresiva - Countdown a Fechas Especiales',
+			description: 'Cuenta regresiva hasta tu cumpleaños, Año Nuevo, Navidad o cualquier fecha especial. ¿Cuántos días, horas y minutos faltan?',
+			keywords: ['cuenta regresiva fecha', 'countdown timer', 'días hasta', 'countdown a fecha', 'año nuevo countdown'],
+			slug: 'date-countdown'
 		}
 	},
 	base64: {
@@ -206,6 +367,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Base64 Encoder/Decoder - Encode Text Online',
 			description: 'Encode or decode Base64 text online. Free tool for developers and webmasters.',
 			keywords: ['base64 encoder', 'base64 decoder', 'base64 online', 'encode text', 'base64 converter'],
+			slug: 'base64'
+		},
+		de: {
+			title: 'Base64 Encoder/Decoder - Text Online Kodieren',
+			description: 'Kodieren oder dekodieren Sie Base64-Text online. Kostenloses Tool für Entwickler und Webmaster.',
+			keywords: ['base64 encoder', 'base64 decoder', 'base64 online', 'text kodieren', 'base64 converter'],
+			slug: 'base64'
+		},
+		es: {
+			title: 'Base64 Encoder/Decoder - Codificar Texto Online',
+			description: 'Codifica o decodifica texto Base64 online. Herramienta gratuita para desarrolladores y webmasters.',
+			keywords: ['base64 encoder', 'base64 decoder', 'base64 online', 'codificar texto', 'base64 converter'],
 			slug: 'base64'
 		}
 	},
@@ -221,6 +394,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Format and validate JSON online. Make JSON readable with indentation. Free JSON beautifier.',
 			keywords: ['json formatter', 'json beautifier', 'json validator', 'format json', 'json online'],
 			slug: 'json-formatter'
+		},
+		de: {
+			title: 'JSON Formatter - JSON Formatieren & Validieren',
+			description: 'Formatieren und validieren Sie JSON online. Machen Sie JSON lesbar mit Einrückung. Kostenloser JSON Beautifier.',
+			keywords: ['json formatter', 'json beautifier', 'json validator', 'json formatieren', 'json online'],
+			slug: 'json-formatter'
+		},
+		es: {
+			title: 'JSON Formatter - Formatear y Validar JSON',
+			description: 'Formatea y valida JSON online. Haz JSON legible con sangría. JSON beautifier gratuito.',
+			keywords: ['json formatter', 'json beautifier', 'json validator', 'formatear json', 'json online'],
+			slug: 'json-formatter'
 		}
 	},
 	colorPicker: {
@@ -234,6 +419,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Color Picker - HEX RGB HSL Converter',
 			description: 'Pick colors and convert between HEX, RGB, HSL and CMYK. Free online color picker for designers.',
 			keywords: ['color picker', 'hex converter', 'rgb to hex', 'color converter', 'hsl converter'],
+			slug: 'color-picker'
+		},
+		de: {
+			title: 'Farbwähler - HEX RGB HSL Konverter',
+			description: 'Wählen Sie Farben und konvertieren Sie zwischen HEX, RGB, HSL und CMYK. Kostenloser Online-Farbwähler für Designer.',
+			keywords: ['farbwähler', 'color picker', 'hex konverter', 'rgb zu hex', 'farb konverter'],
+			slug: 'color-picker'
+		},
+		es: {
+			title: 'Selector de Color - Convertidor HEX RGB HSL',
+			description: 'Elige colores y convierte entre HEX, RGB, HSL y CMYK. Selector de color online gratuito para diseñadores.',
+			keywords: ['selector de color', 'color picker', 'convertidor hex', 'rgb a hex', 'convertidor de color'],
 			slug: 'color-picker'
 		}
 	},
@@ -249,6 +446,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Generate UUID v4 identifiers online. Cryptographically secure. Copy multiple UUIDs at once.',
 			keywords: ['uuid generator', 'guid generator', 'uuid online', 'unique id', 'uuid v4'],
 			slug: 'uuid-generator'
+		},
+		de: {
+			title: 'UUID Generator - Einzigartige IDs Generieren',
+			description: 'Generieren Sie UUID v4 Identifikatoren online. Kryptografisch sicher. Kopieren Sie mehrere UUIDs auf einmal.',
+			keywords: ['uuid generator', 'guid generator', 'uuid online', 'einzigartige id', 'uuid v4'],
+			slug: 'uuid-generator'
+		},
+		es: {
+			title: 'Generador UUID - Generar IDs Únicos',
+			description: 'Genera identificadores UUID v4 online. Criptográficamente seguro. Copia múltiples UUIDs a la vez.',
+			keywords: ['generador uuid', 'generador guid', 'uuid online', 'id único', 'uuid v4'],
+			slug: 'uuid-generator'
 		}
 	},
 	password: {
@@ -262,6 +471,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Password Generator - Create Strong Passwords',
 			description: 'Generate strong, secure passwords. Choose length and character types. Cryptographically random.',
 			keywords: ['password generator', 'strong password', 'secure password', 'random password', 'password maker'],
+			slug: 'password-generator'
+		},
+		de: {
+			title: 'Passwort Generator - Starke Passwörter Erstellen',
+			description: 'Generieren Sie starke, sichere Passwörter. Wählen Sie Länge und Zeichentypen. Kryptografisch zufällig.',
+			keywords: ['passwort generator', 'starkes passwort', 'sicheres passwort', 'zufälliges passwort', 'passwort erstellen'],
+			slug: 'password-generator'
+		},
+		es: {
+			title: 'Generador de Contraseñas - Crear Contraseñas Seguras',
+			description: 'Genera contraseñas fuertes y seguras. Elige longitud y tipos de caracteres. Criptográficamente aleatorio.',
+			keywords: ['generador contraseñas', 'contraseña segura', 'contraseña fuerte', 'contraseña aleatoria', 'crear contraseña'],
 			slug: 'password-generator'
 		}
 	},
@@ -277,6 +498,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Create free QR codes for URLs, text, WiFi and more. Download as PNG or SVG.',
 			keywords: ['qr code generator', 'create qr code', 'free qr code', 'qr code maker', 'qr code online'],
 			slug: 'qr-code-generator'
+		},
+		de: {
+			title: 'QR-Code Generator - Kostenlose QR-Codes Erstellen',
+			description: 'Erstellen Sie kostenlose QR-Codes für URLs, Text, WiFi und mehr. Download als PNG oder SVG.',
+			keywords: ['qr code generator', 'qr code erstellen', 'kostenloser qr code', 'qr code maker', 'qr code online'],
+			slug: 'qr-code-generator'
+		},
+		es: {
+			title: 'Generador de Códigos QR - Crear Códigos QR Gratis',
+			description: 'Crea códigos QR gratuitos para URLs, texto, WiFi y más. Descarga como PNG o SVG.',
+			keywords: ['generador código qr', 'crear código qr', 'código qr gratis', 'qr code maker', 'código qr online'],
+			slug: 'qr-code-generator'
 		}
 	},
 	ageCalc: {
@@ -290,6 +523,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Age Calculator - Calculate Your Age',
 			description: 'Calculate your exact age in years, months, days and hours. See how many days until your next birthday.',
 			keywords: ['age calculator', 'calculate age', 'how old am i', 'birthday calculator', 'age in days'],
+			slug: 'age-calculator'
+		},
+		de: {
+			title: 'Altersrechner - Berechnen Sie Ihr Alter',
+			description: 'Berechnen Sie Ihr genaues Alter in Jahren, Monaten, Tagen und Stunden. Sehen Sie, wie viele Tage bis zu Ihrem nächsten Geburtstag.',
+			keywords: ['altersrechner', 'alter berechnen', 'wie alt bin ich', 'geburtstag rechner', 'alter in tagen'],
+			slug: 'age-calculator'
+		},
+		es: {
+			title: 'Calculadora de Edad - Calcula Tu Edad',
+			description: 'Calcula tu edad exacta en años, meses, días y horas. Mira cuántos días faltan para tu próximo cumpleaños.',
+			keywords: ['calculadora de edad', 'calcular edad', 'cuántos años tengo', 'calculadora cumpleaños', 'edad en días'],
 			slug: 'age-calculator'
 		}
 	},
@@ -305,6 +550,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes online. Free hash calculator.',
 			keywords: ['hash generator', 'md5 generator', 'sha256 generator', 'hash calculator', 'checksum'],
 			slug: 'hash-generator'
+		},
+		de: {
+			title: 'Hash Generator - MD5 SHA256 Online',
+			description: 'Generieren Sie MD5, SHA-1, SHA-256, SHA-384 und SHA-512 Hashes online. Kostenloser Hash-Rechner.',
+			keywords: ['hash generator', 'md5 generator', 'sha256 generator', 'hash rechner', 'checksum'],
+			slug: 'hash-generator'
+		},
+		es: {
+			title: 'Generador de Hash - MD5 SHA256 Online',
+			description: 'Genera hashes MD5, SHA-1, SHA-256, SHA-384 y SHA-512 online. Calculadora de hash gratuita.',
+			keywords: ['generador hash', 'generador md5', 'generador sha256', 'calculadora hash', 'checksum'],
+			slug: 'hash-generator'
 		}
 	},
 	urlEncoder: {
@@ -318,6 +575,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'URL Encoder/Decoder - Encode URLs Online',
 			description: 'Encode or decode URLs online. Supports URI and URI component encoding.',
 			keywords: ['url encoder', 'url decoder', 'encode url', 'percent encoding', 'uri encoder'],
+			slug: 'url-encoder'
+		},
+		de: {
+			title: 'URL Encoder/Decoder - URLs Online Kodieren',
+			description: 'Kodieren oder dekodieren Sie URLs online. Unterstützt URI und URI-Komponenten-Kodierung.',
+			keywords: ['url encoder', 'url decoder', 'url kodieren', 'percent encoding', 'uri encoder'],
+			slug: 'url-encoder'
+		},
+		es: {
+			title: 'URL Encoder/Decoder - Codificar URLs Online',
+			description: 'Codifica o decodifica URLs online. Soporta codificación URI y componentes URI.',
+			keywords: ['url encoder', 'url decoder', 'codificar url', 'percent encoding', 'uri encoder'],
 			slug: 'url-encoder'
 		}
 	},
@@ -333,6 +602,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Convert units: length, weight, temperature, area, volume, speed and data.',
 			keywords: ['unit converter', 'convert units', 'meters to feet', 'kg to pounds', 'celsius fahrenheit'],
 			slug: 'unit-converter'
+		},
+		de: {
+			title: 'Einheitenumrechner - Einheiten Online Umrechnen',
+			description: 'Einheiten umrechnen: Länge, Gewicht, Temperatur, Fläche, Volumen, Geschwindigkeit und Daten.',
+			keywords: ['einheitenumrechner', 'einheiten umrechnen', 'meter zu fuß', 'kg zu pfund', 'celsius fahrenheit'],
+			slug: 'unit-converter'
+		},
+		es: {
+			title: 'Convertidor de Unidades - Convertir Unidades Online',
+			description: 'Convierte unidades: longitud, peso, temperatura, área, volumen, velocidad y datos.',
+			keywords: ['convertidor unidades', 'convertir unidades', 'metros a pies', 'kg a libras', 'celsius fahrenheit'],
+			slug: 'unit-converter'
 		}
 	},
 	textCleaner: {
@@ -346,6 +627,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'Text Cleaner - Remove Markdown & Formatting',
 			description: 'Remove markdown, HTML and formatting from copied text. Perfect for LLM output, ChatGPT, Notion and Word.',
 			keywords: ['text cleaner', 'remove markdown', 'remove formatting', 'plain text', 'chatgpt output'],
+			slug: 'text-cleaner'
+		},
+		de: {
+			title: 'Textbereiniger - Markdown & Formatierung Entfernen',
+			description: 'Entfernen Sie Markdown, HTML und Formatierung aus kopiertem Text. Perfekt für LLM-Ausgabe, ChatGPT, Notion und Word.',
+			keywords: ['text bereiniger', 'markdown entfernen', 'formatierung entfernen', 'plain text', 'chatgpt ausgabe'],
+			slug: 'text-cleaner'
+		},
+		es: {
+			title: 'Limpiador de Texto - Eliminar Markdown y Formato',
+			description: 'Elimina markdown, HTML y formato del texto copiado. Perfecto para salida de LLM, ChatGPT, Notion y Word.',
+			keywords: ['limpiador texto', 'eliminar markdown', 'eliminar formato', 'texto plano', 'salida chatgpt'],
 			slug: 'text-cleaner'
 		}
 	},
@@ -361,6 +654,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Sort lines of text alphabetically. Natural sorting, remove duplicates, case sensitive optional.',
 			keywords: ['sort lines', 'alphabetical sort', 'sort text', 'sort list', 'order lines'],
 			slug: 'sort-lines'
+		},
+		de: {
+			title: 'Zeilen Sortieren - Text Alphabetisch Ordnen',
+			description: 'Sortieren Sie Textzeilen alphabetisch. Natürliche Sortierung, Duplikate entfernen, Groß-/Kleinschreibung optional.',
+			keywords: ['zeilen sortieren', 'alphabetisch sortieren', 'text sortieren', 'liste sortieren', 'sort lines'],
+			slug: 'sort-lines'
+		},
+		es: {
+			title: 'Ordenar Líneas - Ordenar Texto Alfabéticamente',
+			description: 'Ordena líneas de texto alfabéticamente. Ordenación natural, eliminar duplicados, mayúsculas/minúsculas opcional.',
+			keywords: ['ordenar líneas', 'orden alfabético', 'ordenar texto', 'ordenar lista', 'sort lines'],
+			slug: 'sort-lines'
 		}
 	},
 	multiLineEditor: {
@@ -375,6 +680,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Edit multiple lines of text simultaneously. Add prefix/suffix, find & replace, or number lines.',
 			keywords: ['multi line editor', 'bulk text edit', 'multiple lines', 'prefix suffix', 'batch edit'],
 			slug: 'multi-line-editor'
+		},
+		de: {
+			title: 'Multi-Line Editor - Mehrere Zeilen Gleichzeitig Bearbeiten',
+			description: 'Bearbeiten Sie mehrere Textzeilen gleichzeitig. Präfix/Suffix hinzufügen, Suchen & Ersetzen oder Zeilen nummerieren.',
+			keywords: ['multi line editor', 'bulk text edit', 'mehrere zeilen', 'prefix suffix', 'batch edit'],
+			slug: 'multi-line-editor'
+		},
+		es: {
+			title: 'Editor Multi-Línea - Editar Múltiples Líneas',
+			description: 'Edita múltiples líneas de texto simultáneamente. Agrega prefijo/sufijo, buscar y reemplazar o numerar líneas.',
+			keywords: ['editor multi línea', 'edición masiva', 'múltiples líneas', 'prefijo sufijo', 'batch edit'],
+			slug: 'multi-line-editor'
 		}
 	},
 	safezoneChecker: {
@@ -387,6 +704,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 		en: {
 			title: 'Social Media Safezone Checker - TikTok, Reels, Shorts',
 			description: 'Check if your content falls within safe zones for TikTok, Instagram Reels, YouTube Shorts and Stories.',
+			keywords: ['safezone checker', 'tiktok safezone', 'reels safezone', 'shorts safezone', 'content overlay'],
+			slug: 'safezone-checker'
+		},
+		de: {
+			title: 'Social Media Safezone Checker - TikTok, Reels, Shorts',
+			description: 'Prüfen Sie, ob Ihr Content in den sicheren Zonen für TikTok, Instagram Reels, YouTube Shorts und Stories liegt.',
+			keywords: ['safezone checker', 'tiktok safezone', 'reels safezone', 'shorts safezone', 'content overlay'],
+			slug: 'safezone-checker'
+		},
+		es: {
+			title: 'Verificador de Zona Segura - TikTok, Reels, Shorts',
+			description: 'Verifica si tu contenido está dentro de las zonas seguras para TikTok, Instagram Reels, YouTube Shorts y Stories.',
 			keywords: ['safezone checker', 'tiktok safezone', 'reels safezone', 'shorts safezone', 'content overlay'],
 			slug: 'safezone-checker'
 		}
@@ -403,6 +732,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Check character limits for Instagram bio, Twitter/X, TikTok, LinkedIn and more social platforms.',
 			keywords: ['bio counter', 'instagram bio limit', 'twitter limit', 'tiktok bio', 'character limit'],
 			slug: 'bio-counter'
+		},
+		de: {
+			title: 'Bio Zähler - Social Media Zeichenlimits',
+			description: 'Prüfen Sie Zeichenlimits für Instagram Bio, Twitter/X, TikTok, LinkedIn und weitere Social-Media-Plattformen.',
+			keywords: ['bio zähler', 'instagram bio limit', 'twitter limit', 'tiktok bio', 'zeichenlimit'],
+			slug: 'bio-counter'
+		},
+		es: {
+			title: 'Contador de Bio - Límites de Caracteres de Redes Sociales',
+			description: 'Verifica límites de caracteres para bio de Instagram, Twitter/X, TikTok, LinkedIn y más plataformas.',
+			keywords: ['contador bio', 'límite bio instagram', 'límite twitter', 'bio tiktok', 'límite caracteres'],
+			slug: 'bio-counter'
 		}
 	},
 	ogImageTester: {
@@ -416,6 +757,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			title: 'OG Image Tester - Preview Social Media Shares',
 			description: 'Test how your links look on Twitter, Facebook, LinkedIn and Discord. Preview Open Graph tags.',
 			keywords: ['og image tester', 'open graph preview', 'social preview', 'twitter card', 'facebook share'],
+			slug: 'og-image-tester'
+		},
+		de: {
+			title: 'OG Image Tester - Social Media Vorschau',
+			description: 'Testen Sie, wie Ihre Links auf Twitter, Facebook, LinkedIn und Discord aussehen. Open Graph Tags Vorschau.',
+			keywords: ['og image tester', 'open graph vorschau', 'social vorschau', 'twitter card', 'facebook share'],
+			slug: 'og-image-tester'
+		},
+		es: {
+			title: 'Probador de Imagen OG - Vista Previa de Redes Sociales',
+			description: 'Prueba cómo se ven tus enlaces en Twitter, Facebook, LinkedIn y Discord. Vista previa de etiquetas Open Graph.',
+			keywords: ['og image tester', 'open graph preview', 'vista previa social', 'twitter card', 'facebook share'],
 			slug: 'og-image-tester'
 		}
 	},
@@ -431,6 +784,18 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Compare luggage sizes visually. Check carry-on dimensions for different airlines.',
 			keywords: ['luggage size', 'baggage size', 'carry-on dimensions', 'luggage comparison', 'airline baggage'],
 			slug: 'luggage-size'
+		},
+		de: {
+			title: 'Koffer Größen Guide - Gepäck Vergleich',
+			description: 'Vergleichen Sie Koffergrößen visuell. Handgepäck-Maße für verschiedene Airlines prüfen.',
+			keywords: ['koffer größen', 'gepäck größen', 'handgepäck maße', 'koffer vergleich', 'airline gepäck'],
+			slug: 'luggage-size'
+		},
+		es: {
+			title: 'Guía de Tamaños de Equipaje - Comparador de Maletas',
+			description: 'Compara tamaños de maletas visualmente. Verifica dimensiones de equipaje de mano para diferentes aerolíneas.',
+			keywords: ['tamaño equipaje', 'tamaño maleta', 'dimensiones equipaje mano', 'comparar maletas', 'equipaje aerolínea'],
+			slug: 'luggage-size'
 		}
 	},
 	jetlagPlanner: {
@@ -445,27 +810,58 @@ export const toolsMeta: Record<string, ToolMetaByLang> = {
 			description: 'Plan your sleep schedule to minimize jetlag. Tips for eastward and westward travel.',
 			keywords: ['jetlag planner', 'avoid jetlag', 'sleep schedule', 'timezone adjustment', 'travel jetlag'],
 			slug: 'jetlag-planner'
+		},
+		de: {
+			title: 'Jetlag Planer - Schlafplan Anpassen',
+			description: 'Planen Sie Ihren Schlafplan, um Jetlag zu minimieren. Tipps für Ost- und Westreisen.',
+			keywords: ['jetlag planer', 'jetlag vermeiden', 'schlafplan', 'zeitzone anpassen', 'reise jetlag'],
+			slug: 'jetlag-planner'
+		},
+		es: {
+			title: 'Planificador de Jetlag - Ajustar Horario de Sueño',
+			description: 'Planifica tu horario de sueño para minimizar el jetlag. Consejos para viajes hacia el este y oeste.',
+			keywords: ['planificador jetlag', 'evitar jetlag', 'horario sueño', 'ajuste zona horaria', 'viaje jetlag'],
+			slug: 'jetlag-planner'
 		}
 	}
 };
 
-export const siteMeta = {
+export const siteMeta: Record<SupportedLang, { name: string; title: string; description: string; url: string }> = {
 	nl: {
 		name: 'IttyTools',
 		title: 'IttyTools - Gratis Online Tools',
 		description: 'Gratis online tools voor tech, social media en reizen. Simpele tools die gewoon werken. Geen registratie, geen advertenties.',
-		url: 'https://ittytools.com'
+		url: 'https://ittytools.com/nl'
 	},
 	en: {
 		name: 'IttyTools',
 		title: 'IttyTools - Free Online Tools',
 		description: 'Free online tools for tech, social media, and travel. Simple tools that just work. No registration, no ads.',
-		url: 'https://ittytools.com/en'
+		url: 'https://ittytools.com'
+	},
+	de: {
+		name: 'IttyTools',
+		title: 'IttyTools - Kostenlose Online-Tools',
+		description: 'Kostenlose Online-Tools für Tech, Social Media und Reisen. Einfache Tools, die einfach funktionieren. Keine Registrierung, keine Werbung.',
+		url: 'https://ittytools.com/de'
+	},
+	es: {
+		name: 'IttyTools',
+		title: 'IttyTools - Herramientas Online Gratis',
+		description: 'Herramientas online gratuitas para tech, redes sociales y viajes. Herramientas simples que funcionan. Sin registro, sin anuncios.',
+		url: 'https://ittytools.com/es'
 	}
 };
 
 // Category definitions
-export const categories = {
+interface CategoryMeta {
+	name: string;
+	title: string;
+	description: string;
+	slug: string;
+}
+
+export const categories: Record<string, Record<SupportedLang, CategoryMeta>> = {
 	tech: {
 		nl: {
 			name: 'Tech Tools',
@@ -477,6 +873,18 @@ export const categories = {
 			name: 'Tech Tools',
 			title: 'Tech Tools - Developer & Encoding Tools',
 			description: 'Free developer tools: Base64, JSON formatter, hash generator, UUID, password generator and more.',
+			slug: 'tech'
+		},
+		de: {
+			name: 'Tech Tools',
+			title: 'Tech Tools - Entwickler & Encoding Tools',
+			description: 'Kostenlose Entwickler-Tools: Base64, JSON Formatter, Hash Generator, UUID, Passwort Generator und mehr.',
+			slug: 'tech'
+		},
+		es: {
+			name: 'Tech Tools',
+			title: 'Tech Tools - Herramientas de Desarrollo y Codificación',
+			description: 'Herramientas gratuitas para desarrolladores: Base64, JSON formatter, generador de hash, UUID, generador de contraseñas y más.',
 			slug: 'tech'
 		}
 	},
@@ -492,6 +900,18 @@ export const categories = {
 			title: 'Social Media Tools - Content & Preview Tools',
 			description: 'Free social media tools: safezone checker, bio length counter, OG image tester and more.',
 			slug: 'social'
+		},
+		de: {
+			name: 'Social Tools',
+			title: 'Social Media Tools - Content & Preview Tools',
+			description: 'Kostenlose Social-Media-Tools: Safezone Checker, Bio-Längen-Zähler, OG Image Tester und mehr.',
+			slug: 'social'
+		},
+		es: {
+			name: 'Social Tools',
+			title: 'Herramientas de Redes Sociales - Contenido y Vista Previa',
+			description: 'Herramientas gratuitas de redes sociales: verificador de safezone, contador de bio, probador de imagen OG y más.',
+			slug: 'social'
 		}
 	},
 	travel: {
@@ -505,6 +925,18 @@ export const categories = {
 			name: 'Travel Tools',
 			title: 'Travel Tools - Luggage & Planning Tools',
 			description: 'Free travel tools: luggage size guide, weight estimator, jetlag planner and more.',
+			slug: 'travel'
+		},
+		de: {
+			name: 'Reise Tools',
+			title: 'Reise Tools - Gepäck & Planungstools',
+			description: 'Kostenlose Reise-Tools: Koffer-Größen-Guide, Gewichtsschätzer, Jetlag-Planer und mehr.',
+			slug: 'travel'
+		},
+		es: {
+			name: 'Herramientas de Viaje',
+			title: 'Herramientas de Viaje - Equipaje y Planificación',
+			description: 'Herramientas de viaje gratuitas: guía de tamaños de equipaje, estimador de peso, planificador de jetlag y más.',
 			slug: 'travel'
 		}
 	},
@@ -520,21 +952,53 @@ export const categories = {
 			title: 'Everyday Tools - Timers, Counters & More',
 			description: 'Free everyday tools: stopwatch, timer, word counter, calculators and more.',
 			slug: 'everyday'
+		},
+		de: {
+			name: 'Alltag',
+			title: 'Alltags-Tools - Timer, Zähler & Mehr',
+			description: 'Kostenlose Alltags-Tools: Stoppuhr, Timer, Wortzähler, Rechner und mehr.',
+			slug: 'everyday'
+		},
+		es: {
+			name: 'Cotidiano',
+			title: 'Herramientas Cotidianas - Temporizadores, Contadores y Más',
+			description: 'Herramientas cotidianas gratuitas: cronómetro, temporizador, contador de palabras, calculadoras y más.',
+			slug: 'everyday'
 		}
 	}
 };
 
-export function getToolMeta(toolKey: string, lang: Language): ToolMeta | undefined {
-	return toolsMeta[toolKey]?.[lang];
+// Helper function to get tool meta with fallback to English
+export function getToolMeta(toolKey: string, lang: SupportedLang): ToolMeta | undefined {
+	const toolMeta = toolsMeta[toolKey];
+	if (!toolMeta) return undefined;
+
+	// Return requested language or fallback to English
+	return toolMeta[lang] || toolMeta.en;
 }
 
-export function getSiteMeta(lang: Language) {
-	return siteMeta[lang];
+// Helper function to get site meta with fallback to English
+export function getSiteMeta(lang: SupportedLang) {
+	return siteMeta[lang] || siteMeta.en;
 }
 
-export function getAllToolsForLang(lang: Language): Array<ToolMeta & { key: string }> {
+// Helper function to get category meta with fallback to English
+export function getCategoryMeta(categoryKey: string, lang: SupportedLang): CategoryMeta | undefined {
+	const category = categories[categoryKey];
+	if (!category) return undefined;
+
+	return category[lang] || category.en;
+}
+
+// Helper function to get all tools for a language with fallback to English
+export function getAllToolsForLang(lang: SupportedLang): Array<ToolMeta & { key: string }> {
 	return Object.entries(toolsMeta).map(([key, meta]) => ({
 		key,
-		...meta[lang]
+		...(meta[lang] || meta.en)
 	}));
+}
+
+// Helper to check if a language is supported
+export function isSupportedLang(lang: string): lang is SupportedLang {
+	return ['en', 'nl', 'de', 'es'].includes(lang);
 }

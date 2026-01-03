@@ -11,7 +11,7 @@
 	const meta = getToolMeta('uuid', lang)!;
 </script>
 
-<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/uuid-generator" alternatePath="/en/uuid-generator" />
+<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/nl/uuid-generator" alternatePath="/uuid-generator" />
 <ToolSchema name={meta.title} description={meta.description} url="https://smarttools.nl/uuid-generator" />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">

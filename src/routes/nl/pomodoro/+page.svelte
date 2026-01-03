@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/pomodoro"
-	alternatePath="/en/pomodoro"
+	canonicalPath="/nl/pomodoro"
+	alternatePath="/pomodoro"
 />
 
 <ToolSchema

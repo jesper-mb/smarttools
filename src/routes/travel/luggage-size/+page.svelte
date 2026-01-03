@@ -13,7 +13,7 @@
 	title={toolMeta.title}
 	description={toolMeta.description}
 	{lang}
-	canonicalPath="/en/travel/luggage-size"
+	canonicalPath="/travel/luggage-size"
 	alternatePath="/travel/koffer-maten"
 />
 

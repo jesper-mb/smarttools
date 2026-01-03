@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/character-counter"
-	alternatePath="/karakter-teller"
+	canonicalPath="/character-counter"
+	alternatePath="/nl/karakter-teller"
 />
 
 <ToolSchema

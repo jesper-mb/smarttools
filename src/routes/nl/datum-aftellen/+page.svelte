@@ -18,7 +18,7 @@
 	keywords={meta.keywords}
 	{lang}
 	canonicalPath="/datum-aftellen"
-	alternatePath="/en/date-countdown"
+	alternatePath="/date-countdown"
 />
 
 <ToolSchema

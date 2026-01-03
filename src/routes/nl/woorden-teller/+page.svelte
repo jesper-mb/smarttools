@@ -18,7 +18,7 @@
 	keywords={meta.keywords}
 	{lang}
 	canonicalPath="/woorden-teller"
-	alternatePath="/en/word-counter"
+	alternatePath="/word-counter"
 />
 
 <ToolSchema

@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/rad-van-fortuin"
-	alternatePath="/en/wheel-spinner"
+	canonicalPath="/nl/rad-van-fortuin"
+	alternatePath="/wheel-spinner"
 />
 
 <ToolSchema

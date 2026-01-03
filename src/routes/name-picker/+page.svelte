@@ -17,7 +17,7 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/name-picker"
+	canonicalPath="/name-picker"
 	alternatePath="/naam-picker"
 />
 

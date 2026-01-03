@@ -18,7 +18,7 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/social/og-image-tester"
+	canonicalPath="/social/og-image-tester"
 	alternatePath="/social/og-image-tester"
 />
 <ToolSchema

@@ -11,7 +11,7 @@
 	const meta = getToolMeta('colorPicker', lang)!;
 </script>
 
-<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/en/color-picker" alternatePath="/kleur-picker" />
+<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/color-picker" alternatePath="/nl/kleur-picker" />
 <ToolSchema name={meta.title} description={meta.description} url="https://smarttools.nl/en/color-picker" />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">

@@ -11,7 +11,7 @@
 	const meta = getToolMeta('urlEncoder', lang)!;
 </script>
 
-<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/url-encoder" alternatePath="/en/url-encoder" />
+<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/url-encoder" alternatePath="/url-encoder" />
 <ToolSchema name={meta.title} description={meta.description} url="https://smarttools.nl/url-encoder" />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">

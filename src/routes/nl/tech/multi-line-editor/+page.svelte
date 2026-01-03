@@ -13,8 +13,8 @@
 	title={toolMeta.title}
 	description={toolMeta.description}
 	{lang}
-	canonicalPath="/tech/multi-line-editor"
-	alternatePath="/en/tech/multi-line-editor"
+	canonicalPath="/nl/tech/multi-line-editor"
+	alternatePath="/tech/multi-line-editor"
 />
 
 <ToolSchema

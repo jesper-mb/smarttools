@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/click-counter"
-	alternatePath="/klik-teller"
+	canonicalPath="/click-counter"
+	alternatePath="/nl/klik-teller"
 />
 
 <ToolSchema

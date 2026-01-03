@@ -33,8 +33,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/stopwatch"
-	alternatePath="/stopwatch"
+	canonicalPath="/stopwatch"
+	alternatePath="/nl/stopwatch"
 />
 
 <ToolSchema

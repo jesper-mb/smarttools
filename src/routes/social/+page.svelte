@@ -19,8 +19,8 @@
 	title={category.title}
 	description={category.description}
 	{lang}
-	canonicalPath="/en/social"
-	alternatePath="/social"
+	canonicalPath="/social"
+	alternatePath="/nl/social"
 />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 			{:else}
-				<a href="/en/social/{tool.slug}" class="group p-6 border-2 border-neutral-200 hover:border-pink-400 bg-white transition-all hover:shadow-lg">
+				<a href="/social/{tool.slug}" class="group p-6 border-2 border-neutral-200 hover:border-pink-400 bg-white transition-all hover:shadow-lg">
 					<div class="flex items-start gap-3">
 						<span class="text-2xl font-mono font-bold text-pink-600 group-hover:text-pink-700">{tool.icon}</span>
 						<div class="flex-1">

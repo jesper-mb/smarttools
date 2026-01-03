@@ -18,7 +18,7 @@
 	keywords={meta.keywords}
 	{lang}
 	canonicalPath="/naam-picker"
-	alternatePath="/en/name-picker"
+	alternatePath="/name-picker"
 />
 
 <ToolSchema

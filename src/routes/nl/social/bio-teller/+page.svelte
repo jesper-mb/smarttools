@@ -18,8 +18,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/social/bio-teller"
-	alternatePath="/en/social/bio-counter"
+	canonicalPath="/nl/social/bio-teller"
+	alternatePath="/social/bio-counter"
 />
 <ToolSchema
 	name={meta.title}

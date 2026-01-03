@@ -19,8 +19,8 @@
 	title={category.title}
 	description={category.description}
 	{lang}
-	canonicalPath="/en/travel"
-	alternatePath="/travel"
+	canonicalPath="/travel"
+	alternatePath="/nl/travel"
 />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 			{:else}
-				<a href="/en/travel/{tool.slug}" class="group p-6 border-2 border-neutral-200 hover:border-green-400 bg-white transition-all hover:shadow-lg">
+				<a href="/travel/{tool.slug}" class="group p-6 border-2 border-neutral-200 hover:border-green-400 bg-white transition-all hover:shadow-lg">
 					<div class="flex items-start gap-3">
 						<span class="text-2xl group-hover:scale-110 transition-transform">{tool.icon}</span>
 						<div class="flex-1">

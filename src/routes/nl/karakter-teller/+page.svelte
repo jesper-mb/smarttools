@@ -18,7 +18,7 @@
 	keywords={meta.keywords}
 	{lang}
 	canonicalPath="/karakter-teller"
-	alternatePath="/en/character-counter"
+	alternatePath="/character-counter"
 />
 
 <ToolSchema

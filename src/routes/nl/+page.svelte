@@ -14,6 +14,9 @@
 	let suggestedToolName = $state('');
 	let suggestedToolDesc = $state('');
 
+	// Initial animation state
+	let hasAnimated = $state(false);
+
 	// Filter tools based on search
 	let filteredTools = $derived(() => {
 		if (!searchQuery.trim()) return [];
@@ -137,6 +140,7 @@
 									bind:this={searchInput}
 									bind:value={searchQuery}
 									onkeydown={handleKeydown}
+									onfocus={() => hasAnimated = true}
 									type="text"
 									placeholder="typ om te zoeken..."
 									class="flex-1 py-3.5 pr-4 bg-transparent outline-none font-mono text-base placeholder:text-neutral-300"
@@ -169,11 +173,15 @@
 									{/each}
 								{:else}
 									<!-- Default tool suggestions when empty -->
-									<div class="px-4 py-2 text-xs text-neutral-400 uppercase tracking-wider border-b border-neutral-100 bg-neutral-50">Populaire tools</div>
-									{#each tools.slice(0, 5) as tool}
+									<div
+										class="px-4 py-2 text-xs text-neutral-400 uppercase tracking-wider border-b border-neutral-100 bg-neutral-50 {!hasAnimated ? 'animate-fade-in-fast' : ''}"
+										style={!hasAnimated ? 'animation-delay: 400ms' : ''}
+									>Populaire tools</div>
+									{#each tools.slice(0, 5) as tool, i}
 										<a
 											href="/nl/{tool.slug}"
-											class="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-100 transition-colors"
+											class="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-100 transition-colors {!hasAnimated ? 'animate-fade-in-fast' : ''}"
+											style={!hasAnimated ? `animation-delay: ${500 + i * 80}ms` : ''}
 										>
 											<span class="font-mono text-neutral-300 text-sm">&gt;</span>
 											<div class="flex-1 min-w-0">

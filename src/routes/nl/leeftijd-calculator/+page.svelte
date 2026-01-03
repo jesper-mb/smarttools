@@ -11,7 +11,7 @@
 	const meta = getToolMeta('ageCalc', lang)!;
 </script>
 
-<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/leeftijd-calculator" alternatePath="/en/age-calculator" />
+<SEOHead title={meta.title} description={meta.description} keywords={meta.keywords} {lang} canonicalPath="/leeftijd-calculator" alternatePath="/age-calculator" />
 <ToolSchema name={meta.title} description={meta.description} url="https://smarttools.nl/leeftijd-calculator" />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">

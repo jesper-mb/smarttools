@@ -13,7 +13,7 @@
 	title={toolMeta.title}
 	description={toolMeta.description}
 	{lang}
-	canonicalPath="/en/tech/text-cleaner"
+	canonicalPath="/tech/text-cleaner"
 	alternatePath="/tech/tekst-opschonen"
 />
 

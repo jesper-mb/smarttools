@@ -18,7 +18,7 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/social/tiktok-safezone"
+	canonicalPath="/social/tiktok-safezone"
 	alternatePath="/social/tiktok-safezone"
 />
 <ToolSchema

@@ -13,8 +13,8 @@
 	title={toolMeta.title}
 	description={toolMeta.description}
 	{lang}
-	canonicalPath="/travel/jetlag-planner"
-	alternatePath="/en/travel/jetlag-planner"
+	canonicalPath="/nl/travel/jetlag-planner"
+	alternatePath="/travel/jetlag-planner"
 />
 
 <ToolSchema

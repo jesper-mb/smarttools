@@ -14,6 +14,9 @@
 	let suggestedToolName = $state('');
 	let suggestedToolDesc = $state('');
 
+	// Initial animation state
+	let hasAnimated = $state(false);
+
 	// Filter tools based on search
 	let filteredTools = $derived(() => {
 		if (!searchQuery.trim()) return [];
@@ -137,6 +140,7 @@
 									bind:this={searchInput}
 									bind:value={searchQuery}
 									onkeydown={handleKeydown}
+									onfocus={() => hasAnimated = true}
 									type="text"
 									placeholder="type to search..."
 									class="flex-1 py-3.5 pr-4 bg-transparent outline-none font-mono text-base placeholder:text-neutral-300"
@@ -155,7 +159,7 @@
 									{#each filteredTools() as tool, i}
 										<a
 											href="/{tool.slug}"
-											class="flex items-center gap-3 px-4 py-2.5 transition-colors {i === selectedIndex ? 'bg-neutral-950 text-white' : 'hover:bg-neutral-100'}"
+											class="flex items-center gap-3 px-4 py-2.5 transition-all duration-200 {i === selectedIndex ? 'bg-neutral-950 text-white' : 'hover:bg-neutral-100'}"
 										>
 											<span class="font-mono text-orange-600 text-sm {i === selectedIndex ? 'text-orange-400' : ''}">&gt;</span>
 											<div class="flex-1 min-w-0">
@@ -169,11 +173,15 @@
 									{/each}
 								{:else}
 									<!-- Default tool suggestions when empty -->
-									<div class="px-4 py-2 text-xs text-neutral-400 uppercase tracking-wider border-b border-neutral-100 bg-neutral-50">Popular tools</div>
-									{#each tools.slice(0, 5) as tool}
+									<div
+										class="px-4 py-2 text-xs text-neutral-400 uppercase tracking-wider border-b border-neutral-100 bg-neutral-50 {!hasAnimated ? 'animate-fade-in-fast' : ''}"
+										style={!hasAnimated ? 'animation-delay: 400ms' : ''}
+									>Popular tools</div>
+									{#each tools.slice(0, 5) as tool, i}
 										<a
 											href="/{tool.slug}"
-											class="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-100 transition-colors"
+											class="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-100 transition-colors {!hasAnimated ? 'animate-fade-in-fast' : ''}"
+											style={!hasAnimated ? `animation-delay: ${500 + i * 80}ms` : ''}
 										>
 											<span class="font-mono text-neutral-300 text-sm">&gt;</span>
 											<div class="flex-1 min-w-0">
@@ -241,7 +249,7 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
 				{#each tools.slice(0, 9) as tool, i}
 					<a
-						href="/en/{tool.slug}"
+						href="/{tool.slug}"
 						class="group flex items-center gap-4 p-4 border-2 border-neutral-100 hover:border-neutral-950 bg-white transition-all hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
 					>
 						<span class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-neutral-100 text-neutral-400 font-mono text-sm group-hover:bg-orange-600 group-hover:text-white transition-colors">

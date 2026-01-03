@@ -13,7 +13,7 @@
 	title={toolMeta.title}
 	description={toolMeta.description}
 	{lang}
-	canonicalPath="/en/tech/sort-lines"
+	canonicalPath="/tech/sort-lines"
 	alternatePath="/tech/regels-sorteren"
 />
 

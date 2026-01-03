@@ -36,8 +36,8 @@
 	title={category.title}
 	description={category.description}
 	{lang}
-	canonicalPath="/everyday"
-	alternatePath="/en/everyday"
+	canonicalPath="/nl/everyday"
+	alternatePath="/everyday"
 />
 
 <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">

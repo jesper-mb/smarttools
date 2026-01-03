@@ -17,8 +17,8 @@
 	description={meta.description}
 	keywords={meta.keywords}
 	{lang}
-	canonicalPath="/en/coin-flip"
-	alternatePath="/muntje-opgooien"
+	canonicalPath="/coin-flip"
+	alternatePath="/nl/muntje-opgooien"
 />
 
 <ToolSchema
